@@ -37,3 +37,10 @@ export interface delProductMw {
 export interface searchProductMw {
   res: any
 }
+
+export interface Product {
+  name: string
+  desc: string
+  stock: number
+  categoryId: number
+}
