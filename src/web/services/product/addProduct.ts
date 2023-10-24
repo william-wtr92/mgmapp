@@ -5,7 +5,7 @@ const addProduct = async (productData: Product) => {
   try {
     const { name, desc, stock, categoryId } = productData
 
-    const response = await axios.post("/api/product", {
+    const response = await axios.post("/api/product/add", {
       name,
       desc,
       stock,
