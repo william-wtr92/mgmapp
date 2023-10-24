@@ -4,7 +4,7 @@ const confApi = require("../config.ts")
 
 const pbkdf2 = promisify(pbkdf2Callback)
 
-const hashPassword = async(
+export const hashPassword = async(
   password: string,
   salt = randomBytes(confApi.security.password.saltlen).toString("hex")
 ) => [
@@ -19,5 +19,3 @@ const hashPassword = async(
   ).toString("hex"),
   salt,
 ]
-
-module.exports.hashPassword = hashPassword
