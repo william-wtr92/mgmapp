@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  --primary: #e8f3fc;
+  --secondary: #ffffff;
+  --navtext: #6d7794;
+  --navtitle: #405da0;
+  --hover: #2a90f1;
+  max-height: 100vh;
+  font-family: "Chivo";
+}
+
+body {
+  background-color: var(--primary);
+}

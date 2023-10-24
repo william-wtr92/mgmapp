@@ -1,0 +1,148 @@
+.container {
+  position: relative;
+  width: 20%;
+  height: 95%;
+  background-color: var(--secondary);
+  position: fixed;
+  border-radius: 20px;
+  margin-top: 25px;
+  margin-left: 20px;
+  padding: 20px;
+  transition: 500ms;
+}
+
+.containerbis {
+  position: relative;
+  width: 6%;
+  height: 95%;
+  background-color: var(--secondary);
+  position: fixed;
+  border-radius: 20px;
+  margin-top: 25px;
+  margin-left: 20px;
+  padding: 20px;
+  transition: 400ms;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 20px;
+  padding-top: 40px;
+}
+
+.image {
+  border-radius: 10px;
+  transition-duration: 200ms;
+}
+
+.image:hover {
+  scale: 104%;
+}
+
+.text {
+  font-size: 20px;
+  transition-duration: 200ms;
+}
+
+.text:hover {
+  color: var(--hover);
+}
+
+.navtitle {
+  color: var(--navtitle);
+  font-size: 1.5rem;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  margin-left: 20px;
+  gap: 30px;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 18px;
+}
+
+.icons {
+  height: 26px;
+}
+
+.grouplinks {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+  transition-duration: 300ms;
+}
+
+.grouplinks > * {
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+
+.grouplinks:hover {
+  scale: 105%;
+  color: var(--hover);
+}
+
+.open {
+  position: absolute;
+  right: -0.7rem;
+  top: 2rem;
+  height: 40px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.imagebis {
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.userbis {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.navtitlebis {
+  color: var(--navtitle);
+  font-size: 1rem;
+}
+
+.groupbis {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  gap: 30px;
+}
+
+.linkbis {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 18px;
+}
+
+.grouplinksbis {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition-duration: 300ms;
+}
+
+.grouplinksbis:hover {
+  scale: 105%;
+  color: var(--hover);
+}
