@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primary);
+  
+}
 
 html {
   --primary: #e8f3fc;
@@ -8,10 +12,8 @@ html {
   --navtext: #6d7794;
   --navtitle: #405da0;
   --hover: #2a90f1;
+   --grey: rgb(225, 225, 225);
+  --error: rgb(176, 0, 0); 
   max-height: 100vh;
   font-family: "Chivo";
-}
-
-body {
-  background-color: var(--primary);
 }
