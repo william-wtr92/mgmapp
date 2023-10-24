@@ -1,9 +1,14 @@
 import BaseModel from "./BaseModel"
 import CategoryModel from "./CategoryModel"
 
-
 class ProductModel extends BaseModel {
   static tableName = "product"
+
+  id!: number
+  name!: string
+  desc!: string
+  stock!: number
+  categoryId!: number
 
   static relationMappings() {
     return {
