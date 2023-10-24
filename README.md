@@ -1,40 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SDM Project
 
-## Getting Started
+![Website peek](public/images/laptop.png)
 
-First, run the development server:
+## Context
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Le supermarché Sup2Marché, fort d' un réseau de plus de 200 enseignes en France et dans le cadre de son
+expansion croissante, envisage de moderniser son système de gestion des stocks.
+Ainsi, il sollicite des solutions innovantes et robustes de la part des prestataires intéressés, capables de
+répondre aux besoins spécifiques d' une chaîne de distribution de cette envergure, afin d' optimiser
+efficacement la gestion des stocks, les approvisionnements et les opérations logistiques à l'échelle nationale
+Le supermarché attend une solution optimisée et fonctionnelle, capable de répondre aux besoins spécificiques
+d’une grande chaîne de distribution, c’est-à-dire, la gestions des stocks, les approvisionnements et les
+opérations logistiques.
+La solution crée sera une interface web (dashboard) permettant aux caissiers et aux managers de gérer
+efficacement les stocks de leur magasin.
+
+
+## Dev Team
+
+<table>
+  <tr>
+    <td>William Wautrin</td>
+    <td>Pascal Lim</td>
+ </tr>
+  <tr>
+    <td>Web developer</td>
+    <td>Web developer</td>
+  </tr>
+</table>
+
+## Liens importants
+
+<ul>
+  <li><a href="https://website-pi-lac.vercel.app">Production link</a></li>
+  <li><a href="https://www.figma.com/file/vR0FnFAauJ955LobAGbTLr/Energy-Insight-Dashboard-(Community)?type=design&node-id=0-1&mode=design&t=mabfNweEjrZgDJc5-0">Figma</a></li>
+  <li><a href="https://project-william.atlassian.net/wiki/spaces/MP/pages/7929857/Conceptualisation+Merise+BDD">Confluence Documentation</a></li>
+</ul>
+
+## `.env` setup
+
+```dotenv
+
+# Your DB
+DB_CONNECTION_HOST=
+DB_CONNECTION_USER=
+DB_CONNECTION_PWD=
+DB_CONNECTION_DB=
+
+# Hash password
+SECURITY_PASSWORD_PEPPER=
+SECURITY_JWT_SECRET=
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Comment installer le projet
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Clone le projet;
+- Executer la commande `npm install` pour installer les dépendances;
+- Configurez le fichier .env;
+- Executer la commande `npx knex --esm migrate:latest` pour creer vos tables;
+- Executer la commande `npm run dev` pour lancer le site;
