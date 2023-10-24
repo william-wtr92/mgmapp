@@ -1,5 +1,5 @@
 const Home = () => {
-  return <div>Go dev</div>
+  return <div></div>
 }
 
 export default Home
