@@ -5,8 +5,11 @@ const { hashPassword } = require("../hashPassword.ts")
 class UserModel extends BaseModel {
   static tableName = "user"
 
-  passwordSalt!: string; 
-  passwordHash!: string;
+  id!: number
+  passwordSalt!: string
+  passwordHash!: string
+  email!: string
+  roleData!: RoleModel
 
   static relationMappings() {
     return {
