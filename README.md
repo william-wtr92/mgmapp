@@ -6,13 +6,16 @@
 
 Le supermarché Sup2Marché, fort d' un réseau de plus de 200 enseignes en France et dans le cadre de son
 expansion croissante, envisage de moderniser son système de gestion des stocks.
+
 Ainsi, il sollicite des solutions innovantes et robustes de la part des prestataires intéressés, capables de
 répondre aux besoins spécifiques d' une chaîne de distribution de cette envergure, afin d' optimiser
-efficacement la gestion des stocks, les approvisionnements et les opérations logistiques à l'échelle nationale
+efficacement la gestion des stocks, les approvisionnements et les opérations logistiques à l'échelle nationale.
+
 Le supermarché attend une solution optimisée et fonctionnelle, capable de répondre aux besoins spécificiques
 d’une grande chaîne de distribution, c’est-à-dire, la gestions des stocks, les approvisionnements et les
 opérations logistiques.
-La solution crée sera une interface web (dashboard) permettant aux caissiers et aux managers de gérer
+
+La solution créée sera une interface web (dashboard) permettant aux caissiers et aux managers de gérer
 efficacement les stocks de leur magasin.
 
 
