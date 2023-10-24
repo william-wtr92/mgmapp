@@ -1,3 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+html {
+  font-family: "Chivo";
+  
+  --primary: #e8f3fc;
+  --secondary: #FFFFFF;
+  --grey: rgb(225, 225, 225);
+  --error: rgb(176, 0, 0); 
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primary);
+  
+}
