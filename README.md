@@ -1,8 +1,8 @@
-# SDM Project
+# Projet SDM x Roland
 
 ![Website peek](public/images/laptop.png)
 
-## Context
+## Contexte
 
 Le supermarché Sup2Marché, fort d' un réseau de plus de 200 enseignes en France et dans le cadre de son
 expansion croissante, envisage de moderniser son système de gestion des stocks.
@@ -32,7 +32,7 @@ efficacement les stocks de leur magasin.
 ## Liens importants
 
 <ul>
-  <li><a href="https://website-pi-lac.vercel.app">Production link</a></li>
+  <li><a href="https://mgmapp.vercel.app">Lien vers la PROD</a></li>
   <li><a href="https://www.figma.com/file/vR0FnFAauJ955LobAGbTLr/Energy-Insight-Dashboard-(Community)?type=design&node-id=0-1&mode=design&t=mabfNweEjrZgDJc5-0">Figma</a></li>
   <li><a href="https://project-william.atlassian.net/wiki/spaces/MP/pages/7929857/Conceptualisation+Merise+BDD">Confluence Documentation</a></li>
 </ul>
