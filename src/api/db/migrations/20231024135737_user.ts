@@ -13,9 +13,9 @@ export const up = async (knex: Knex): Promise<void> => {
   await knex.schema.createTable('user', (table: Knex.TableBuilder) => {
     table.increments('id').primary();
     table.string('email').unique().notNullable();
-    table.string('passwordHash').notNullable();
-    table.string('passwordSalt').notNullable();
-    table.timestamps(true, true);
+    table.text('passwordHash').notNullable();
+    table.text('passwordSalt').notNullable();
+    table.timestamps(true);
     table.string('firstname').notNullable();
     table.string('lastname').notNullable();
     table.integer("roleId").references("id").inTable("role").defaultTo(1)

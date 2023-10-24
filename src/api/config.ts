@@ -23,7 +23,7 @@ const configApi = {
       stub: resolve("src/api/db/migration.stub"),
     },
     seeds: {
-      directory: resolve("src/api/seeds"),
+      directory: resolve("src/api/db/seeds"),
     },
   },
   security: {
