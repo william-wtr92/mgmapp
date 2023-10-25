@@ -60,8 +60,6 @@ const Login = () => {
             onSubmit={handleSubmit}
           >
             {(({ dirty, errors, values }) => {
-
-              console.log(values)
               return (
                 <Form className={styles.form}>
 

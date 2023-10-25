@@ -17,6 +17,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/api/db/user_seed.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/api/db/user_seed.js", "src/hooks/useAppContext.js"],
   "exclude": ["node_modules"]
 }

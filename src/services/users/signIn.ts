@@ -20,7 +20,6 @@ const signIn = async (values: LoginInitialValues) => {
 
     return [null, true];
   } catch (error) {
-    console.log(error);
     return [Array.isArray(error) ? error : [error]];
   }
 }
