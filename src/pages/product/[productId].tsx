@@ -53,6 +53,10 @@ const ProductDetail = (props: any) => {
           <label className={styles.labels}>Stock du produit</label>
           <p className={styles.data}>{productDetailData?.stock}</p>
         </div>
+        <div className={styles.details}>
+          <label className={styles.labels}>Category Id</label>
+          <p className={styles.data}>{productDetailData?.categoryId}</p>
+        </div>
       </div>
       <h2 className={styles.title}>Actions</h2>
       <div className={styles.iconsContainer}>
