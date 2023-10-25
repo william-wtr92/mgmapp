@@ -1,10 +1,10 @@
-import React from 'react'
-import styles from "@/styles/components/Button.module.css";
+import React from "react"
+import styles from "@/styles/components/Button.module.css"
 
 type Props = {
-  label: string;
-  onClickAction: () => void;
-  disabled?: boolean;
+  label: string
+  onClickAction: () => void
+  disabled?: boolean
 }
 
 const Button = (props: Props) => {

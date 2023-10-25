@@ -4,17 +4,8 @@ import mw from "@/api/mw"
 import { mailValidator, stringValidator } from "@/components/validators/basic"
 import jsonwebtoken from "jsonwebtoken"
 import { InvalidCredentialsError } from "@/api/error"
+import { signInMw } from "@/types/login/type"
 const config = require("@/api/config")
-
-interface MyMiddlewareInput {
-  locals: {
-    body: {
-      email: string
-      password: string
-    }
-  }
-  res: any
-}
 
 const handler = mw({
   POST: [
@@ -29,7 +20,7 @@ const handler = mw({
         body: { email, password },
       },
       res,
-    }: MyMiddlewareInput) => {
+    }: signInMw) => {
       const user = await UserModel.query()
         .findOne({ email })
         .withGraphFetched("roleData")
