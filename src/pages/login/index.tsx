@@ -6,23 +6,31 @@ import * as yup from "yup"
 import FormikField from "@/components/FormikField";
 import Image from "next/image";
 import Button from "@/components/Button";
+import signIn from "@/services/users/signIn";
+import { useRouter } from "next/router";
+import LoginLayout from "@/components/ui/LoginLayout";
 
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required("Please enter your username").min(1, "Please enter a valid username"),
+  email: yup.string().email().required("Please enter your email").min(1, "Please enter a valid email"),
   password: yup.string().required("Please enter your password")
 });
 
 const initialValues: LoginInitialValues = {
-  username: "",
+  email: "",
   password: ""
 }
 
 const Login = () => {
+  const router = useRouter();
 
-  const handleSubmit = useCallback((values: LoginInitialValues): void => {
-    console.log(values);
-  }, []);
+  const handleSubmit = async(values: LoginInitialValues) => {
+    const [error] = await signIn(values);
+
+    if (!error) {
+      router.push("/")
+    }
+  }
 
   return (
     <main className={styles.main}>
@@ -52,8 +60,8 @@ const Login = () => {
             onSubmit={handleSubmit}
           >
             {(({ dirty, errors, values }) => {
-              console.log(errors);
 
+              console.log(values)
               return (
                 <Form className={styles.form}>
 
@@ -65,9 +73,9 @@ const Login = () => {
             
                   <FormikField
                     type={"text"}
-                    placeholder="Username"
-                    name={"username"}
-                    label={"Username"}
+                    placeholder="E-mail"
+                    name={"email"}
+                    label={"E-mail"}
                   />
 
                   <FormikField
@@ -79,7 +87,7 @@ const Login = () => {
 
                   <Button
                     label={"Login"}
-                    onClickAction={() => console.log("test")}
+                    onClickAction={() => console.log("datas sent !")}
                   />
                 </Form>
               )
@@ -90,5 +98,9 @@ const Login = () => {
     </main>
   )
 }
+
+Login.getLayout = function (page: any) {
+  return <LoginLayout>{page}</LoginLayout>;
+};
 
 export default Login;

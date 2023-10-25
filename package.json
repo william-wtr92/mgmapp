@@ -19,6 +19,7 @@
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.0.1",
     "next": "13.5.6",
+    "nookies": "^2.5.2",
     "objection": "^3.1.2",
     "pg": "^8.11.3",
     "react": "^18",
