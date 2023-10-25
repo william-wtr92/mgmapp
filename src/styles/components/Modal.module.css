@@ -1,0 +1,39 @@
+.modal {
+  position: fixed;
+  margin: 0 auto;
+  top: -20%;
+  left: 37vw;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  transition-duration: 500ms;
+  background-color: var(--secondary);
+  -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.73);
+  box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.73);
+}
+
+.modal > * {
+  transition-duration: 500ms;
+}
+
+.opened {
+  transition-duration: 500ms;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Modal sizes */
+.small {
+  width: 200px;
+}
+
+.medium {
+  width: 350px;
+}
+
+.large {
+  width: 500px;
+}
+
+.fitContent {
+  width: fit-content;
+}

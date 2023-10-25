@@ -9,16 +9,40 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "@heroicons/react/24/outline"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import classNames from "classnames"
+import getFormValues from "@/services/getForm"
+import { ModalType, addProductType } from "@/types/modal/ModalType"
+import FormikForm from "../utils/FormikForm"
+import Modal from "./Modal"
+import { NavbarBtn } from "../utils/NavbarBtn"
+import addProduct from "@/services/products/addProduct"
 
 const NavBar = () => {
+  const [modalType, setModalType] = useState<ModalType>("");
+  const [initialValues, setInitialValues] = useState<any>("")
+  const [validationSchema, setValidationSchema] = useState<any>("");
+  const [onSubmitFunc, setOnSubmitFunc] = useState<any>();
+  const [submitBtnText, setSubmitBtnText] = useState<any>("");
   const [open, setOpen] = useState<boolean>(true)
+
+
+  useEffect(() => {
+    setInitialValues(getFormValues(modalType)?.initialValues);
+    setValidationSchema(getFormValues(modalType)?.validationSchema);
+    setSubmitBtnText(getFormValues(modalType)?.submitBtnText);
+  }, [modalType])
+
 
   const handleOpen = useCallback(() => {
     setOpen(!open)
   }, [open])
 
+  const setProductModalType = useCallback(() => {
+    setModalType(modalType !== addProductType ? addProductType : "")
+    setOnSubmitFunc(addProduct)
+  }, [modalType]);
+  
   return (
     <>
       <div className={classNames(
@@ -60,13 +84,11 @@ const NavBar = () => {
                 {""}
             </NavLink>
             
-              <NavLink
+              <NavbarBtn
                 Icon={FolderPlusIcon}
-                href="/"
                 label={"Ajouter"}
-              >
-                {""}
-              </NavLink>
+                onClickAction={() => setProductModalType()}
+              />
             </div>
           </div>
 
@@ -92,7 +114,25 @@ const NavBar = () => {
             </div>
           </div>
 
+      </div>
+      
+      <Modal
+        opened={modalType.length > 0}
+        size={"medium"}
+      >
+        <div className={styles.formContainer}>
+          {initialValues && (
+            <FormikForm
+              formTitle={"Ajouter un produit"}
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              handleSubmit={addProduct}
+              submitBtnText={submitBtnText}
+              setModalType={setModalType}
+            />
+          )}
         </div>
+      </Modal>
     </>
   )
 }

@@ -1,24 +1,15 @@
-import { Product } from "@/types/product/type"
-import axios from "axios"
+import getApiClient from "../getApiClient"
 
-const addProduct = async (productData: Product) => {
+const addProduct = async (values: any) => {
+  const reqInstance = getApiClient(null)
+  const url = "http://localhost:3000/api/product/add"
+
   try {
-    const { name, desc, stock, categoryId } = productData
+    const { data } = await reqInstance.post(url, values)
 
-    const response = await axios.post("/api/product/add", {
-      name,
-      desc,
-      stock,
-      categoryId,
-    })
-
-    if (response.data.result) {
-      return { success: true }
-    }
-  } catch (err: any) {
-    const error = err.response?.data?.error || "Oops. Something went wrong"
-
-    return [error]
+    return [null, true]
+  } catch (error) {
+    return [Array.isArray(error) ? error : [error]]
   }
 }
 
