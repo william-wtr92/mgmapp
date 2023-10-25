@@ -10,9 +10,10 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/24/outline"
 import { useCallback, useState } from "react"
+import classNames from "classnames"
 
 const NavBar = () => {
-  const [open, setOpen] = useState<Boolean>(true)
+  const [open, setOpen] = useState<boolean>(true)
 
   const handleOpen = useCallback(() => {
     setOpen(!open)
@@ -20,86 +21,78 @@ const NavBar = () => {
 
   return (
     <>
-      {open ? (
-        <div className={styles.container}>
-          <ChevronLeftIcon className={styles.open} onClick={handleOpen} />
+      <div className={classNames(
+        styles.container, 
+        open ? styles.open : styles.closed
+      )}>
+        {open ? (
+          <ChevronLeftIcon className={styles.chevronButton} onClick={handleOpen} />
+        ) : (
+          <ChevronRightIcon className={styles.chevronButton} onClick={handleOpen} />
+        )}
 
-          <div className={styles.user}>
-            <Image
-              src={"/images/test.jpg"}
-              width={50}
-              height={20}
-              alt="user"
-              className={styles.image}
-            />
-            <div className={styles.info}>
-              <p>Hello 👋</p>
+          <div className={styles.userInfos}>
+            <div className={styles.imageWrapper}>
+              <Image
+                src={"/images/test.jpg"}
+                alt="user"
+                className={styles.image}
+                fill
+              /> 
+            </div>
+
+            <div className={styles.infos}>
+              <p className={styles.text}>Hello 👋</p>
               <p className={styles.text}>William Lim</p>
             </div>
+            
           </div>
-          <div className={styles.group}>
-            <h1 className={styles.navtitle}>Menu</h1>
-            <div className={styles.link}>
-              <div className={styles.grouplinks}>
-                <HomeIcon className={styles.icons} />
-                <NavLink href="/">Home</NavLink>
-              </div>
-              <div className={styles.grouplinks}>
-                <FolderPlusIcon className={styles.icons} />
-                <NavLink href="/">Ajouter</NavLink>
-              </div>
+
+          <div className={styles.groupLinks}>
+            <h1 className={styles.groupTitle}>Menu</h1>
+
+            <div className={styles.links}>
+              <NavLink
+                Icon={HomeIcon}
+                href="/"
+                label={"Home"}
+              >
+                {""}
+            </NavLink>
+            
+              <NavLink
+                Icon={FolderPlusIcon}
+                href="/"
+                label={"Ajouter"}
+              >
+                {""}
+              </NavLink>
             </div>
           </div>
-          <div className={styles.group}>
-            <h1 className={styles.navtitle}>Settings</h1>
-            <div className={styles.link}>
-              <div className={styles.grouplinks}>
-                <UserIcon className={styles.icons} />
-                <NavLink href="/">Profile</NavLink>
-              </div>
-              <div className={styles.grouplinks}>
-                <ArrowLeftOnRectangleIcon className={styles.icons} />
-                <NavLink href="/">Logout</NavLink>
-              </div>
+
+          <div className={styles.groupLinks}>
+            <h1 className={styles.groupTitle}>Settings</h1>
+
+            <div className={styles.links}>
+              <NavLink
+                Icon={UserIcon}
+                href="/"
+                label={"Profile"}
+              >
+                {""}
+              </NavLink>
+                
+              <NavLink
+                Icon={ArrowLeftOnRectangleIcon}
+                href="/"
+                label={"Logout"}
+              >
+                {""}
+              </NavLink>
             </div>
           </div>
+
         </div>
-      ) : (
-        <div className={styles.containerbis}>
-          <ChevronRightIcon className={styles.open} onClick={handleOpen} />
-          <div className={styles.userbis}>
-            <Image
-              src={"/images/test.jpg"}
-              width={50}
-              height={20}
-              alt="user"
-              className={styles.imagebis}
-            />
-          </div>
-          <div className={styles.groupbis}>
-            <h1 className={styles.navtitlebis}>Menu</h1>
-            <div className={styles.linkbis}>
-              <div className={styles.grouplinksbis}>
-                <HomeIcon className={styles.icons} />
-              </div>
-              <div className={styles.grouplinksbis}>
-                <FolderPlusIcon className={styles.icons} />
-              </div>
-            </div>
-          </div>
-          <div className={styles.groupbis}>
-            <h1 className={styles.navtitlebis}>Settings</h1>
-            <div className={styles.linkbis}>
-              <div className={styles.grouplinksbis}>
-                <UserIcon className={styles.icons} />
-              </div>
-              <div className={styles.grouplinksbis}>
-                <ArrowLeftOnRectangleIcon className={styles.icons} />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   )
 }

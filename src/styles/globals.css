@@ -3,7 +3,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: var(--primary);
-  
+  font-weight: 200;
 }
 
 html {
@@ -12,8 +12,13 @@ html {
   --navtext: #6d7794;
   --navtitle: #405da0;
   --hover: #2a90f1;
-   --grey: rgb(225, 225, 225);
+  --grey: rgb(225, 225, 225);
+  --black: black;
   --error: rgb(176, 0, 0); 
   max-height: 100vh;
   font-family: "Chivo";
+}
+
+a {
+  text-decoration: none;
 }

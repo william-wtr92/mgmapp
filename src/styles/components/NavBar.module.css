@@ -1,38 +1,63 @@
 .container {
-  position: relative;
-  width: 20%;
-  height: 95%;
-  background-color: var(--secondary);
-  position: fixed;
-  border-radius: 20px;
-  margin-top: 25px;
-  margin-left: 20px;
-  padding: 20px;
-  transition: 500ms;
-}
-
-.containerbis {
-  position: relative;
-  width: 6%;
-  height: 95%;
-  background-color: var(--secondary);
-  position: fixed;
-  border-radius: 20px;
-  margin-top: 25px;
-  margin-left: 20px;
-  padding: 20px;
-  transition: 400ms;
-}
-
-.user {
   display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-left: 20px;
-  padding-top: 40px;
+  flex-direction: column;
+  gap: 2.5rem;
+  background-color: var(--secondary);
+  position: relative;
+  position: sticky;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  padding-top: 2rem;
+  transition: 500ms;
+  overflow: hidden;
+}
+
+/* Styles for open / closed menu state */
+.open {
+  width: 200px;
+}
+
+.closed {
+  width: calc(20px + 31px);
+}
+/*  */
+
+.chevronButton {
+  position: absolute;
+  bottom: 2rem;
+  height: 1.5rem;
+  background-color: var(--primary);
+  padding: 10px;
+  border-radius: 30px;
+  z-index: 20;
+  transition: 500ms;
+  color: var(--black);
+}
+
+.chevronButton:hover {
+  background-color: var(--hover);
+  transform: rotate(360deg);
+}
+
+
+/* Navbar top text */
+.userInfos {
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  gap: 1rem;
+  width: 150px; 
+}
+
+.imageWrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
 }
 
 .image {
+  position: initial !important;
   border-radius: 10px;
   transition-duration: 200ms;
 }
@@ -41,108 +66,53 @@
   scale: 104%;
 }
 
+.infos {
+  transition-duration: 300ms;
+}
+
 .text {
-  font-size: 20px;
+  margin: 0;
   transition-duration: 200ms;
+  text-wrap: nowrap;
 }
 
 .text:hover {
   color: var(--hover);
 }
 
-.navtitle {
+/* Group of links */
+.groupLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.groupTitle {
   color: var(--navtitle);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 200;
+  transition-duration: 300ms;
 }
 
-.group {
+.links {
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
-  margin-left: 20px;
-  gap: 30px;
-}
-
-.link {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+  gap: 1.5rem;
   font-size: 18px;
+  width: 160px;
 }
 
 .icons {
   height: 26px;
 }
 
-.grouplinks {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: 10px;
-  transition-duration: 300ms;
+.container.closed {
+  .infos {
+    opacity: 0;
+  }
+
+  .groupTitle {
+    opacity: 0;
+  }
 }
 
-.grouplinks > * {
-  font-size: 1.2rem;
-  font-weight: 100;
-}
-
-.grouplinks:hover {
-  scale: 105%;
-  color: var(--hover);
-}
-
-.open {
-  position: absolute;
-  right: -0.7rem;
-  top: 2rem;
-  height: 40px;
-  background-color: white;
-  padding: 10px;
-  border-radius: 30px;
-}
-
-.imagebis {
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
-}
-
-.userbis {
-  padding-top: 40px;
-  display: flex;
-  justify-content: center;
-}
-
-.navtitlebis {
-  color: var(--navtitle);
-  font-size: 1rem;
-}
-
-.groupbis {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
-  gap: 30px;
-}
-
-.linkbis {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  font-size: 18px;
-}
-
-.grouplinksbis {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition-duration: 300ms;
-}
-
-.grouplinksbis:hover {
-  scale: 105%;
-  color: var(--hover);
-}

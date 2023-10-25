@@ -1,21 +1,40 @@
-// Dans NavLink.tsx
-import { useRouter } from "next/router"
 import React from "react"
-import classNames from "classnames"
 import Link from "./Link"
 import { Props as LinkProps } from "./Link"
+import styles from "@/styles/components/NavLink.module.css"
+import { useRouter } from "next/router"
+import classNames from "classnames"
 
-interface NavLinkProps extends LinkProps {}
+interface NavLinkProps extends LinkProps { } 
 
-export const NavLink: React.FC<NavLinkProps> = ({
-  className,
-  ...otherProps
+interface CustomNavLinkProps extends NavLinkProps { 
+  Icon: any;
+  label?: string;
+  opened?: boolean;
+}
+
+export const NavLink: React.FC<CustomNavLinkProps> = ({
+  Icon,
+  href,
+  children,
+  label,
+  opened
 }) => {
-  const { asPath } = useRouter()
 
-  const combinedClassName = classNames("text-sm", className, {
-    underline: asPath === otherProps.href,
-  })
+  const router = useRouter();
 
-  return <Link {...otherProps} className={combinedClassName} />
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.iconWrapper}>
+        <Icon className={styles.icon} onClick={() => router.push(href)} />
+      </div>
+
+        <Link href={href} className={
+          styles.link
+        }
+        >
+        {label}
+      </Link>
+    </div>
+  )
 }
