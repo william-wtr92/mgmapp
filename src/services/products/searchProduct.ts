@@ -13,7 +13,7 @@ const fetcher = async (url: string) => {
   }
 }
 
-const useGetSearchProduc = (productName: string) => {
+const useGetSearchProduct = (productName: string) => {
   const url = `http://localhost:3000/api/product/search?search=${productName}`
 
   const { data, error, isLoading } = useSWR(url, fetcher)
@@ -25,4 +25,4 @@ const useGetSearchProduc = (productName: string) => {
   }
 }
 
-export default useGetSearchProduc
+export default useGetSearchProduct

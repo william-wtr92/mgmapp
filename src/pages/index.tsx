@@ -11,13 +11,6 @@ const Home = () => {
   const { userData, userError, userLoading } = useGetUsers()
   const { productHistoricData, productHistoricError, productHistoricLoading } =
     useGetHistoricProducts()
-  // const [search, setSearch] = useState("")
-  // const { productsSearchData, productsSearchError, productsSearchLoading } =
-  //   useGetSearchProduct(search)
-
-  // const handleSubmitSearch = useCallback(() => {
-  //   setSearch(...)
-  // }, [])
 
   return (
     <main className={styles.container}>
