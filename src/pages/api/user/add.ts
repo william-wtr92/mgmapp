@@ -50,6 +50,7 @@ const handler = mw({
 
       await UserModel.query().insert(newUser)
 
+
       res.send({ result: true })
     },
   ],
