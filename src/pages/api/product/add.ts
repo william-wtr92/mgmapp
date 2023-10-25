@@ -4,7 +4,7 @@ import { NotFoundError } from "@/api/error"
 import validate from "@/api/middelwares/validate"
 import mw from "@/api/mw"
 import { numberValidator, stringValidator } from "@/components/validators/basic"
-import { addProductMw, searchProductMw } from "@/types/product/type"
+import { addProductMw } from "@/types/product/type"
 
 const handler = mw({
   POST: [
@@ -36,13 +36,6 @@ const handler = mw({
       })
 
       res.send({ result: true })
-    },
-  ],
-  GET: [
-    async ({ res }: searchProductMw) => {
-      const products = await ProductModel.query().select()
-
-      res.send({ result: products })
     },
   ],
 })

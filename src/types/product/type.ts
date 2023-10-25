@@ -35,6 +35,11 @@ export interface delProductMw {
 }
 
 export interface searchProductMw {
+  locals: {
+    query: {
+      search: string
+    }
+  }
   res: any
 }
 
