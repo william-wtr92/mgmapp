@@ -1,10 +1,12 @@
 const knex = require("knex")
 const config = require("../../config.ts")
-const {hashPassword} = require("../hashPassword.ts")
+const { hashPassword } = require("../hashPassword.ts")
 
 const seed = async () => {
   const db = knex(config.db)
 
+  await db("product").del()
+  await db("category").del()
   await db("user").del()
 
   const [predefinedPasswordHash, predefinedPasswordSalt] = await hashPassword(
@@ -19,7 +21,12 @@ const seed = async () => {
     roleId: 2,
   }
 
+  const predefinedCategory = {
+    name: "Légumes",
+  }
+
   await db("user").insert(predefinedUser)
+  await db("category").insert(predefinedCategory)
 }
 
 module.exports = {
