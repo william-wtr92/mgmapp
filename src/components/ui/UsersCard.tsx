@@ -6,8 +6,6 @@ import Button from "../Button"
 const UsersCard = (props: any) => {
   const { users } = props
 
-  console.log(users)
-
   return (
     <div className={styles.container}>
       <div className={styles.titleContainer}>

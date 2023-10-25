@@ -10,7 +10,6 @@ const fetcher = async (url: string) => {
 
     return data.result
   } catch (error) {
-    console.log(error)
     return [Array.isArray(error) ? error : [error]]
   }
 }
