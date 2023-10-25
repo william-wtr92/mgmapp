@@ -28,7 +28,7 @@ const UsersCard = (props: any) => {
               />
               <div className={styles.info}>
                 <p className={styles.name}>{user.firstname}</p>
-                <p className={styles.role}>{user.roleData.right}</p>
+                <p className={styles.role}>{user?.roleData.right}</p>
               </div>
             </div>
           ))}
