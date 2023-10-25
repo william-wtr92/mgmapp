@@ -13,16 +13,16 @@ const fetcher = async (url: string) => {
   }
 }
 
-const useGetUsers = () => {
-  const url = "http://localhost:3000/api/user/all"
+const useGetHistoricProducts = () => {
+  const url = "http://localhost:3000/api/product/historic"
 
   const { data, error, isLoading } = useSWR(url, fetcher)
 
   return {
-    userData: data,
-    userError: error,
-    userLoading: isLoading,
+    productHistoricData: data,
+    productHistoricError: error,
+    productHistoricLoading: isLoading,
   }
 }
 
-export default useGetUsers
+export default useGetHistoricProducts

@@ -16,6 +16,7 @@ html {
   --black: black;
   --error: rgb(176, 0, 0);
   --button: #ccdbfd;
+  --point: rgb(49, 238, 90);
   max-height: 100vh;
   font-family: "Chivo";
 }
