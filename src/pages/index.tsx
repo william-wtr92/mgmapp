@@ -7,14 +7,14 @@ const Home = () => {
 
   return (
     <main className={styles.container}>
-      <div className={styles.mainContainer}>Main Card</div>
+      <div className={styles.mainContainer}></div>
 
       <div className={styles.rightContainer}>
         <div className={styles.topContainer}>
           <UsersCard users={!userLoading ? userData : []} />
         </div>
 
-        <div className={styles.bottomContainer}>EZ</div>
+        <div className={styles.bottomContainer}></div>
       </div>
     </main>
   )
