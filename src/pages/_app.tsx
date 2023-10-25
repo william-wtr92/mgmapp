@@ -11,11 +11,13 @@ import "@fontsource/chivo/100-italic.css"
 import type { AppProps } from "next/app"
 
 export default function App({ Component, pageProps }: AppProps) {
+  const renderWithLayout = (Component as any).getLayout || ((page: any) => <Layout>{page}</Layout>)
+
   return (
     <>
-      <Layout>
+      {renderWithLayout(
         <Component {...pageProps} />
-      </Layout>
+      )}
     </>
   )
 }

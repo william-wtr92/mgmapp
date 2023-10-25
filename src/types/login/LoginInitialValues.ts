@@ -1,4 +1,4 @@
 export type LoginInitialValues = {
-  username: string,
+  email: string,
   password: string
 }

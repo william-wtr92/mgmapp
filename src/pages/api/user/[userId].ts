@@ -1,5 +1,7 @@
 import UserModel from "@/api/db/models/UserModel"
 import { NotFoundError } from "@/api/error"
+import auth from "@/api/middelwares/auth"
+import checkIsManager from "@/api/middelwares/checkIsManager"
 import validate from "@/api/middelwares/validate"
 import mw from "@/api/mw"
 import { numberValidator, stringValidator } from "@/components/validators/basic"
@@ -7,6 +9,8 @@ import { delUserMw, patchUserMw } from "@/types/user/type"
 
 const handler = mw({
   DELETE: [
+    auth(),
+    checkIsManager(),
     validate({
       query: {
         userId: numberValidator.required(),
@@ -30,6 +34,8 @@ const handler = mw({
     },
   ],
   PATCH: [
+    auth(),
+    checkIsManager(),
     validate({
       query: {
         userId: numberValidator.required(),

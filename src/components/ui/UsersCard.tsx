@@ -3,12 +3,11 @@ import Image from "next/image"
 import { NavLink } from "../utils/NavLink"
 import Button from "../Button"
 
-const users = [
-  { id: 1, firstname: "William", role: "Cassier" },
-  { id: 2, firstname: "Pascal", role: "Manager" },
-]
+const UsersCard = (props: any) => {
+  const { users } = props
 
-const UsersCard = () => {
+  console.log(users)
+
   return (
     <div className={styles.container}>
       <div className={styles.titleContainer}>
@@ -19,21 +18,22 @@ const UsersCard = () => {
         </NavLink>
       </div>
       <div className={styles.card}>
-        {users.map((user) => (
-          <div key={user.id} className={styles.unit}>
-            <Image
-              src={"/images/test.jpg"}
-              alt="user"
-              className={styles.image}
-              height={50}
-              width={50}
-            />
-            <div className={styles.info}>
-              <p className={styles.name}>{user.firstname}</p>
-              <p className={styles.role}>{user.role}</p>
+        {users &&
+          users.map((user: any, index: number) => (
+            <div key={index} className={styles.unit}>
+              <Image
+                src={"/images/test.jpg"}
+                alt="user"
+                className={styles.image}
+                height={50}
+                width={50}
+              />
+              <div className={styles.info}>
+                <p className={styles.name}>{user.firstname}</p>
+                <p className={styles.role}>{user.roleData.right}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
 
         <div className={styles.add}>
           <Button

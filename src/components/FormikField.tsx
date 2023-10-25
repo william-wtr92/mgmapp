@@ -21,6 +21,7 @@ const FormikField = (props: Props) => {
             <span>{label}</span>
 
             <input
+              {...field}
               className={styles.input}
               type={type}
               placeholder={placeholder}

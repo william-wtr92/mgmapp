@@ -43,17 +43,25 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  width: 100%;
+  width: 50%;
 }
 
 .name {
   font-size: 1.2rem;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .role {
   font-size: 0.8rem;
   padding-left: 0.3rem;
+}
+
+.role::first-letter {
+  text-transform: uppercase;
 }
 
 .add > * {
