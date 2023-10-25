@@ -8,16 +8,31 @@ import "@fontsource/chivo/400.css"
 import "@fontsource/chivo/500.css"
 import "@fontsource/chivo/600.css"
 import "@fontsource/chivo/100-italic.css"
+import { useEffect } from "react"
+import { useRouter } from "next/router"
+import { parseCookies } from "nookies"
 import type { AppProps } from "next/app"
+import parseSession from "@/services/helper/parseSession"
 
 export default function App({ Component, pageProps }: AppProps) {
-  const renderWithLayout = (Component as any).getLayout || ((page: any) => <Layout>{page}</Layout>)
+  const router = useRouter()
+  const cookies = parseCookies()
+  const token = cookies.token
 
-  return (
-    <>
-      {renderWithLayout(
-        <Component {...pageProps} />
-      )}
-    </>
-  )
+  useEffect(() => {
+    const session = token ? parseSession(token) : null
+
+    if (!session && router.pathname !== "/login") {
+      router.push("/login")
+    }
+
+    if (session && router.pathname == "/login") {
+      router.push("/")
+    }
+  }, [router, token])
+
+  const renderWithLayout =
+    (Component as any).getLayout || ((page: any) => <Layout>{page}</Layout>)
+
+  return <>{renderWithLayout(<Component {...pageProps} />)}</>
 }
