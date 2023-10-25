@@ -1,31 +1,34 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from "react"
 import styles from "@/styles/pages/Login.module.css"
 import { Formik, Form, Field } from "formik"
-import { LoginInitialValues } from "@/types/login/LoginInitialValues";
+import { LoginInitialValues } from "@/types/login/LoginInitialValues"
 import * as yup from "yup"
-import FormikField from "@/components/FormikField";
-import Image from "next/image";
-import Button from "@/components/Button";
-import signIn from "@/services/users/signIn";
-import { useRouter } from "next/router";
-import LoginLayout from "@/components/ui/LoginLayout";
-
+import FormikField from "@/components/FormikField"
+import Image from "next/image"
+import Button from "@/components/Button"
+import signIn from "@/services/users/signIn"
+import { useRouter } from "next/router"
+import LoginLayout from "@/components/ui/LoginLayout"
 
 const validationSchema = yup.object().shape({
-  email: yup.string().email().required("Please enter your email").min(1, "Please enter a valid email"),
-  password: yup.string().required("Please enter your password")
-});
+  email: yup
+    .string()
+    .email()
+    .required("Please enter your email")
+    .min(1, "Please enter a valid email"),
+  password: yup.string().required("Please enter your password"),
+})
 
 const initialValues: LoginInitialValues = {
   email: "",
-  password: ""
+  password: "",
 }
 
 const Login = () => {
-  const router = useRouter();
+  const router = useRouter()
 
-  const handleSubmit = async(values: LoginInitialValues) => {
-    const [error] = await signIn(values);
+  const handleSubmit = async (values: LoginInitialValues) => {
+    const [error] = await signIn(values)
 
     if (!error) {
       router.push("/")
@@ -52,23 +55,23 @@ const Login = () => {
         </div>
 
         <div className={styles.formRight}>
-          <p className={styles.formRightTitle}>Log into Roland</p>
+          <p className={styles.formRightTitle}>Se connecter à Roland</p>
 
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {(({ dirty, errors, values }) => {
+            {({ dirty, errors, values }) => {
               return (
                 <Form className={styles.form}>
-
                   <div className={styles.formErrors}>
-                    {errors && Object.entries(errors).map(([_, value], index) => (
-                      <span key={index}>{value}</span>
-                    ))}
+                    {errors &&
+                      Object.entries(errors).map(([_, value], index) => (
+                        <span key={index}>{value}</span>
+                      ))}
                   </div>
-            
+
                   <FormikField
                     type={"text"}
                     placeholder="E-mail"
@@ -89,7 +92,7 @@ const Login = () => {
                   />
                 </Form>
               )
-            })}
+            }}
           </Formik>
         </div>
       </div>
@@ -98,7 +101,7 @@ const Login = () => {
 }
 
 Login.getLayout = function (page: any) {
-  return <LoginLayout>{page}</LoginLayout>;
-};
+  return <LoginLayout>{page}</LoginLayout>
+}
 
-export default Login;
+export default Login

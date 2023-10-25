@@ -5,14 +5,9 @@ import { allUsersMw } from "@/types/user/type"
 
 const handler = mw({
   GET: [
-  auth(),
+    auth(),
     async ({ res }: allUsersMw) => {
-      const users = await UserModel.query().select(
-        "email",
-        "firstname",
-        "lastname",
-        "roleId"
-      )
+      const users = await UserModel.query().withGraphFetched("roleData")
 
       res.send({ result: users })
     },

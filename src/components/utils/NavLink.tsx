@@ -5,12 +5,12 @@ import styles from "@/styles/components/NavLink.module.css"
 import { useRouter } from "next/router"
 import classNames from "classnames"
 
-interface NavLinkProps extends LinkProps { } 
+interface NavLinkProps extends LinkProps {}
 
-interface CustomNavLinkProps extends NavLinkProps { 
-  Icon: any;
-  label?: string;
-  opened?: boolean;
+interface CustomNavLinkProps extends NavLinkProps {
+  Icon?: any
+  label?: string
+  opened?: boolean
 }
 
 export const NavLink: React.FC<CustomNavLinkProps> = ({
@@ -18,21 +18,19 @@ export const NavLink: React.FC<CustomNavLinkProps> = ({
   href,
   children,
   label,
-  opened
+  opened,
 }) => {
-
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.iconWrapper}>
-        <Icon className={styles.icon} onClick={() => router.push(href)} />
-      </div>
+      {Icon ? (
+        <div className={styles.iconWrapper}>
+          <Icon className={styles.icon} onClick={() => router.push(href)} />
+        </div>
+      ) : null}
 
-        <Link href={href} className={
-          styles.link
-        }
-        >
+      <Link href={href} className={styles.link}>
         {label}
       </Link>
     </div>

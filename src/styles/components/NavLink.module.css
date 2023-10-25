@@ -7,6 +7,10 @@
   transition-duration: 300ms;
 }
 
+.wrapper:hover {
+  cursor: pointer;
+}
+
 .iconWrapper {
   display: flex;
   flex-direction: row;

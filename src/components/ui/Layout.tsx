@@ -8,9 +8,7 @@ const Layout = (props: any) => {
     <div className={styles.layout}>
       <NavBar />
 
-      <main>
-        <div>{children}</div>
-      </main>
+      {children}
     </div>
   )
 }

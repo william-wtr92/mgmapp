@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  width: 100%;
+  margin: 30px 20px;
+}
+
+.rightContainer {
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25%;
+}
+
+.rightContainer > * {
+  height: 50%;
+}
+
+.mainContainer {
+  display: flex;
+  width: 100%;
+}

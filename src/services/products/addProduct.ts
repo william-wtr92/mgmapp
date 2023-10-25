@@ -1,17 +1,16 @@
-import getApiClient from "../getApiClient";
+import getApiClient from "../getApiClient"
 
-const addProduct = async(values: any) => {
-  const reqInstance = getApiClient(null);
+const addProduct = async (values: any) => {
+  const reqInstance = getApiClient(null)
   const url = "http://localhost:3000/api/product/add"
 
   try {
+    const { data } = await reqInstance.post(url, values)
 
-    const { data } = await reqInstance.post(url, values);
-
-    return [null, true];
+    return [null, true]
   } catch (error) {
-    return [Array.isArray(error) ? error : [error]];
+    return [Array.isArray(error) ? error : [error]]
   }
 }
 
-export default addProduct;
+export default addProduct
