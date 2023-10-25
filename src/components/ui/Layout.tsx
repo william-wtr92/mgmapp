@@ -1,17 +1,17 @@
 import NavBar from "./NavBar"
+import styles from "@/styles/components/Layout.module.css"
 
 const Layout = (props: any) => {
   const { children } = props
 
   return (
-    <>
+    <div className={styles.layout}>
       <NavBar />
-      <div className="flex flex-col min-h-screen">
-        <main className="flex-grow">
-          <div>{children}</div>
-        </main>
-      </div>
-    </>
+
+      <main>
+        <div>{children}</div>
+      </main>
+    </div>
   )
 }
 export default Layout
