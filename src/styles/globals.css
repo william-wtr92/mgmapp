@@ -14,11 +14,16 @@ html {
   --hover: #2a90f1;
   --grey: rgb(225, 225, 225);
   --black: black;
-  --error: rgb(176, 0, 0); 
+  --error: rgb(176, 0, 0);
+  --button: #ccdbfd;
   max-height: 100vh;
   font-family: "Chivo";
 }
 
 a {
   text-decoration: none;
+}
+
+p {
+  margin: 0;
 }
