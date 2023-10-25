@@ -17,22 +17,22 @@ import FormikForm from "../utils/FormikForm"
 import Modal from "./Modal"
 import { NavbarBtn } from "../utils/NavbarBtn"
 import addProduct from "@/services/products/addProduct"
+import { useRouter } from "next/router"
 
 const NavBar = () => {
-  const [modalType, setModalType] = useState<ModalType>("");
+  const [modalType, setModalType] = useState<ModalType>("")
   const [initialValues, setInitialValues] = useState<any>("")
-  const [validationSchema, setValidationSchema] = useState<any>("");
-  const [onSubmitFunc, setOnSubmitFunc] = useState<any>();
-  const [submitBtnText, setSubmitBtnText] = useState<any>("");
+  const [validationSchema, setValidationSchema] = useState<any>("")
+  const [onSubmitFunc, setOnSubmitFunc] = useState<any>()
+  const [submitBtnText, setSubmitBtnText] = useState<any>("")
   const [open, setOpen] = useState<boolean>(true)
-
+  const router = useRouter()
 
   useEffect(() => {
-    setInitialValues(getFormValues(modalType)?.initialValues);
-    setValidationSchema(getFormValues(modalType)?.validationSchema);
-    setSubmitBtnText(getFormValues(modalType)?.submitBtnText);
+    setInitialValues(getFormValues(modalType)?.initialValues)
+    setValidationSchema(getFormValues(modalType)?.validationSchema)
+    setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
   }, [modalType])
-
 
   const handleOpen = useCallback(() => {
     setOpen(!open)
@@ -41,85 +41,83 @@ const NavBar = () => {
   const setProductModalType = useCallback(() => {
     setModalType(modalType !== addProductType ? addProductType : "")
     setOnSubmitFunc(addProduct)
-  }, [modalType]);
-  
+  }, [modalType])
+
+  const handleClearCookies = useCallback(() => {
+    document.cookie = "token" + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;"
+    router.push("/login")
+  }, [])
+
   return (
     <>
-      <div className={classNames(
-        styles.container, 
-        open ? styles.open : styles.closed
-      )}>
+      <div
+        className={classNames(
+          styles.container,
+          open ? styles.open : styles.closed
+        )}
+      >
         {open ? (
-          <ChevronLeftIcon className={styles.chevronButton} onClick={handleOpen} />
+          <ChevronLeftIcon
+            className={styles.chevronButton}
+            onClick={handleOpen}
+          />
         ) : (
-          <ChevronRightIcon className={styles.chevronButton} onClick={handleOpen} />
+          <ChevronRightIcon
+            className={styles.chevronButton}
+            onClick={handleOpen}
+          />
         )}
 
-          <div className={styles.userInfos}>
-            <div className={styles.imageWrapper}>
-              <Image
-                src={"/images/test.jpg"}
-                alt="user"
-                className={styles.image}
-                fill
-              /> 
-            </div>
-
-            <div className={styles.infos}>
-              <p className={styles.text}>Hello 👋</p>
-              <p className={styles.text}>William Lim</p>
-            </div>
-            
+        <div className={styles.userInfos}>
+          <div className={styles.imageWrapper}>
+            <Image
+              src={"/images/test.jpg"}
+              alt="user"
+              className={styles.image}
+              fill
+            />
           </div>
 
-          <div className={styles.groupLinks}>
-            <h1 className={styles.groupTitle}>Menu</h1>
+          <div className={styles.infos}>
+            <p className={styles.text}>Hello 👋</p>
+            <p className={styles.text}>William Lim</p>
+          </div>
+        </div>
 
-            <div className={styles.links}>
-              <NavLink
-                Icon={HomeIcon}
-                href="/"
-                label={"Home"}
-              >
-                {""}
+        <div className={styles.groupLinks}>
+          <h1 className={styles.groupTitle}>Menu</h1>
+
+          <div className={styles.links}>
+            <NavLink Icon={HomeIcon} href="/" label={"Home"}>
+              {""}
             </NavLink>
-            
-              <NavbarBtn
-                Icon={FolderPlusIcon}
-                label={"Ajouter"}
-                onClickAction={() => setProductModalType()}
-              />
-            </div>
+
+            <NavbarBtn
+              Icon={FolderPlusIcon}
+              label={"Ajouter"}
+              onClickAction={() => setProductModalType()}
+            />
           </div>
+        </div>
 
-          <div className={styles.groupLinks}>
-            <h1 className={styles.groupTitle}>Settings</h1>
+        <div className={styles.groupLinks}>
+          <h1 className={styles.groupTitle}>Settings</h1>
 
-            <div className={styles.links}>
-              <NavLink
-                Icon={UserIcon}
-                href="/"
-                label={"Profile"}
-              >
-                {""}
-              </NavLink>
-                
-              <NavLink
-                Icon={ArrowLeftOnRectangleIcon}
-                href="/"
-                label={"Logout"}
-              >
-                {""}
-              </NavLink>
-            </div>
+          <div className={styles.links}>
+            <NavLink Icon={UserIcon} href="/" label={"Profile"}>
+              {""}
+            </NavLink>
+
+            <NavbarBtn
+              Icon={ArrowLeftOnRectangleIcon}
+              label={"Logout"}
+              onClickAction={() => handleClearCookies()}
+            />
           </div>
-
+        </div>
       </div>
-      
-      <Modal
-        opened={modalType.length > 0}
-        size={"medium"}
-      >
+
+      <Modal opened={modalType.length > 0} size={"medium"}>
         <div className={styles.formContainer}>
           {initialValues && (
             <FormikForm

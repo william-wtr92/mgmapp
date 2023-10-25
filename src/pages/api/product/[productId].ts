@@ -70,6 +70,28 @@ const handler = mw({
       res.send({ result: true })
     },
   ],
+  GET: [
+    auth(),
+    validate({
+      query: {
+        productId: numberValidator.required(),
+      },
+    }),
+    async ({
+      locals: {
+        query: { productId },
+      },
+      res,
+    }: delProductMw) => {
+      const product = await ProductModel.query().findOne({ id: productId })
+
+      if (!product) {
+        throw new NotFoundError()
+      }
+
+      res.send({ result: product })
+    },
+  ],
 })
 
 export default handler
