@@ -22,7 +22,6 @@ const auth = () => {
     }
 
     const decodedToken = jsonwebtoken.decode(jwt);
-    // const isTokenExpired = Date.now() >= decodedToken?.exp * 1000;
 
     if (typeof decodedToken !== 'string' && decodedToken !== null && decodedToken.exp) {
       const isTokenExpired = Date.now() >= decodedToken.exp * 1000;
@@ -36,7 +35,7 @@ const auth = () => {
     const payload = jsonwebtoken.verify(jwt, config.security.jwt.secret);
 
     if (typeof payload !== 'string') {
-      locals.userId = payload.user.id; 
+      locals.userId = payload.payload.user.id; 
     }
 
     try {

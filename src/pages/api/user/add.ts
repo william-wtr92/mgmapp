@@ -1,5 +1,7 @@
 import UserModel from "@/api/db/models/UserModel"
 import { InvalidCredentialsError, NotFoundError } from "@/api/error"
+import auth from "@/api/middelwares/auth"
+import checkIsManager from "@/api/middelwares/checkIsManager"
 import validate from "@/api/middelwares/validate"
 import mw from "@/api/mw"
 import {
@@ -12,6 +14,8 @@ const { hashPassword } = require("@/api/db/hashPassword.ts")
 
 const handler = mw({
   POST: [
+    auth(),
+    checkIsManager(),
     validate({
       body: {
         email: mailValidator.required(),
@@ -44,7 +48,7 @@ const handler = mw({
         roleId,
       }
 
-      await UserModel.query().insertAndFetch(newUser)
+      await UserModel.query().insert(newUser)
 
       res.send({ result: true })
     },
