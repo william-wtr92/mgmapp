@@ -1,0 +1,60 @@
+.container {
+  margin: 25px 10px;
+  width: 90%;
+}
+
+.tableContainer {
+  max-height: 85vh;
+  overflow-y: auto;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.tableContainer::-webkit-scrollbar {
+  width: 0.4rem;
+  background-color: var(--secondary);
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background-color: var(--black);
+  border-radius: 0.2rem;
+}
+
+.thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--secondary);
+}
+
+.thead th {
+  padding: 1rem 1.5rem;
+}
+
+.title {
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.card {
+  background-color: var(--secondary);
+  text-align: center;
+  max-height: 85vh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.image {
+  border-radius: 15px;
+}
+
+.role::first-letter {
+  text-transform: uppercase;
+}

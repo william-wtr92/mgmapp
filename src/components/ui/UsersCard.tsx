@@ -10,7 +10,7 @@ const UsersCard = (props: any) => {
     <div className={styles.container}>
       <div className={styles.titleContainer}>
         <h1 className={styles.title}>Membres</h1>
-        <NavLink href="/all" label={"Tout voir"}>
+        <NavLink href="/user/all" label={"Tout voir"}>
           {" "}
           {""}
         </NavLink>
