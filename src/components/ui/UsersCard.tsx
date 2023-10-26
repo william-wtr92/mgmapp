@@ -26,7 +26,7 @@ const UsersCard = (props: any) => {
     userError,
     userLoading,
     updateUsers
-  } = useGetUsers(null)
+  } = useGetUsers()
   const users = !userLoading ? userData : []
 
   const {
