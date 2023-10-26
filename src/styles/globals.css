@@ -12,11 +12,17 @@ html {
   --navtext: #6d7794;
   --navtitle: #405da0;
   --hover: #2a90f1;
+  --hover-lol: black;
+  --hover-gradient: linear-gradient(90deg, #5667FF 0%, #2396EF 100%);
+  --dark-background: #3054AA;
   --grey: rgb(225, 225, 225);
   --black: black;
   --error: rgb(176, 0, 0);
+  --warning: #FF8800;
+  --success: rgb(49, 238, 90);
   --button: #ccdbfd;
   --point: rgb(49, 238, 90);
+  --overlay-background: rgba(0, 0, 0, 0.5);
   max-height: 100vh;
   font-family: "Chivo";
 }
@@ -28,3 +34,4 @@ a {
 p {
   margin: 0;
 }
+

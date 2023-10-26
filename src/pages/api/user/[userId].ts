@@ -83,11 +83,12 @@ const handler = mw({
       },
       res,
     }: patchUserMw) => {
+
       const user = await UserModel.query()
         .findOne({ id: userId })
         .withGraphFetched("roleData")
         .select("email", "firstname", "lastname", "createdAt")
-
+      
       if (!user) {
         throw new NotFoundError()
       }

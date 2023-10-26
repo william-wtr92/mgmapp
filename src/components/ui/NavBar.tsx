@@ -132,7 +132,11 @@ const NavBar = () => {
         </div>
       </div>
 
-      <Modal opened={modalType === addProductType} size={"medium"}>
+      <Modal
+        opened={modalType === addProductType}
+        size={"medium"}
+        setModalType={setModalType}
+      >
         <div className={styles.formContainer}>
           <FormikForm
             formTitle={"Ajouter un produit"}

@@ -4,7 +4,37 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 9999;
+} 
+
+.hidden {
   pointer-events: none;
+}
+
+.visible {
+  background-color: var(--overlay-background);
+}
+
+.closeButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem;
+  border-radius: 0.75rem;
+  border: 0;
+  outline: 0;
+  padding: 0.3rem 0.5rem; 
+
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
 }
 
 .modal {
@@ -15,7 +45,7 @@
   background-color: var(--secondary);
   -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.73);
   box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.73);
-  
+  position: relative;
 }
 
 .opened {

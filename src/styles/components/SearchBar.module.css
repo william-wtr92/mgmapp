@@ -4,12 +4,15 @@
 
 .search {
   width: 100%;
-  padding: 1.3rem 2rem;
-  padding-left: 3rem;
+  padding: 0.8rem 2rem 0.8rem 2.8rem;
   background-color: var(--secondary);
   border: 0;
   border-radius: 10px;
   font-size: 1.2rem;
+  font-family: inherit;
+  font-weight: 200;
+  font-size: 0.9rem;
+  box-shadow: 0px 2px 5px 0px #00000040;
 }
 
 .search:focus {

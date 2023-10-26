@@ -25,6 +25,10 @@ const UserDetail = (props: any) => {
   const { userDetailData, userDetailError, userDetailLoading } =
     useGetUserDetail(userId)
 
+  const user = !userDetailLoading && userDetailData;
+
+
+
   const handleReturn = useCallback(() => {
     router.push("/")
   }, [router])
@@ -53,7 +57,7 @@ const UserDetail = (props: any) => {
         </div>
         <div className={styles.details}>
           <label className={styles.labels}>Rôle</label>
-          <p className={styles.data}>{userDetailData?.roleData.right}</p>
+          <p className={styles.data}>{user?.roleData?.right}</p>
         </div>
       </div>
       <h2 className={styles.title}>Actions</h2>

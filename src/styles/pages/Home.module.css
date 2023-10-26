@@ -1,0 +1,142 @@
+.container {
+  display: flex;
+  width: 100%;
+  margin: 30px 20px;
+  /* border: 2px solid red; */
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+  margin-right: 2.5rem;
+}
+
+.rightContainer {
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25%;
+}
+
+.rightContainer > * {
+  height: 50%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.groupHeadWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.groupTitle {
+  font-size: 1.2rem;
+}
+
+.categoriesContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1.75rem;
+}
+
+.categoryBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 100px;
+  max-height: 150px;
+  min-width: 100px;
+  aspect-ratio: 1/1;
+  flex: 1;
+  color: white;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  background: var(--hover-gradient);
+  transition-duration: 400ms;
+  box-shadow: 0px 2px 5px 0px #00000040;
+  position: relative;
+}
+
+.iconWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: var(--dark-background);
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  aspect-ratio: 1/1;
+  color: var(--secondary);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.priorityIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  animation-name: blink;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+}
+
+.highPriority {
+  color: var(--error);
+}
+
+.mediumPriority {
+  color: var(--warning);
+}
+
+.lowPriority {
+  color: var(--success);
+}
+
+
+.categoryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.categoryInfo > p:first-child {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.categoryInfo > p:last-child {
+  font-weight: 100;
+  font-size: 0.9rem;
+  opacity: 0.76;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  49% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
