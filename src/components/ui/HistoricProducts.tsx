@@ -9,7 +9,7 @@ const HistoricProducts = (props: any) => {
     <div className={styles.container}>
       <div className={styles.titleContainer}>
         <h1 className={styles.title}>Historique</h1>
-        <NavLink href="/all" label={"Tout voir"}>
+        <NavLink href="/product/all" label={"Tout voir"}>
           {" "}
           {""}
         </NavLink>
