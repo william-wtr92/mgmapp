@@ -4,26 +4,27 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
 import { useRouter } from "next/router"
 import { useCallback, useEffect, useState } from "react"
 
-const SearchBar = () => {
+type Props = {
+  defaultValue?: string;
+}
+
+const SearchBar = (props: Props) => {
+  const { defaultValue } = props
   const router = useRouter()
-  const [value, setValue] = useState("")
-  const [search, setSearch] = useState("")
-  const { productsSearchData, productsSearchError, productsSearchLoading } =
-    useGetSearchProduct(search)
+  const [value, setValue] = useState<string>(defaultValue ? defaultValue : "")
 
   const handleChange = useCallback((e: any) => {
     setValue(e.target.value)
   }, [value])
 
   const handleSubmit = useCallback(() => {
-    setSearch(value)
     router.push(`/product/search?search=${value}`)
   }, [value]);
 
   useEffect(() => {
     const searchBar = document.querySelector("#productSearchBar")
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: any) => {
       if (event.key === "Enter") {
         handleSubmit();
       }
@@ -36,23 +37,21 @@ const SearchBar = () => {
     return () => {
       searchBar.removeEventListener("keydown", handleKeyDown)
     }
-  }, [])
-
-  console.log(value)
-  console.log(productsSearchData)
+  }, [handleSubmit])
 
   return (
-    <form onSubmit={handleSubmit} className={styles.container}>
+    <div className={styles.container}>
       <MagnifyingGlassIcon className={styles.icon} />
       <input
         id="productSearchBar"
         type="search"
         value={value}
+        // defaultValue={defaultValue ? defaultValue : ""}
         onChange={handleChange}
         className={styles.search}
         placeholder="Rechercher ..."
       />
-    </form>
+    </div>
   )
 }
 

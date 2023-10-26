@@ -93,20 +93,24 @@
   width: 30px;
   height: 30px;
   animation-name: blink;
-  animation-duration: 800ms;
-  animation-iteration-count: infinite;
 }
 
 .highPriority {
   color: var(--error);
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
 }
 
 .mediumPriority {
   color: var(--warning);
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
 }
 
 .lowPriority {
   color: var(--success);
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
 }
 
 
@@ -114,11 +118,14 @@
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .categoryInfo > p:first-child {
   font-size: 1.2rem;
   font-weight: 300;
+  text-overflow: ellipsis;
 }
 
 .categoryInfo > p:last-child {

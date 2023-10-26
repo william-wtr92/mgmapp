@@ -14,13 +14,10 @@ const Home = () => {
   const { userData, userError, userLoading } = useGetUsers()
   const { productHistoricData, productHistoricError, productHistoricLoading } =
     useGetHistoricProducts()
-  
+  const productHistoric = (!productHistoricLoading && !productHistoricError) && productHistoricData;
+    
   const { lowerStockProductsData, lowerStockProductsError, lowerStockProductsIsLoading } = useGetLowerStockProducts();
   const lowerStockProducts = !lowerStockProductsIsLoading && lowerStockProductsData;
-
-  console.log(lowerStockProducts);
-
-  const mock = new Array(4).fill("").map((_, i ) => i +1)
 
   return (
     <main className={styles.container}>
@@ -59,7 +56,6 @@ const Home = () => {
                     )} />
                   )}
 
-                  {/* icon */}
                   <div className={styles.iconWrapper}>
                     <ShoppingBagIcon className={styles.icon} />
                   </div>
@@ -91,7 +87,7 @@ const Home = () => {
 
         <div className={styles.bottomContainer}>
           <HistoricProducts
-            products={!productHistoricLoading ? productHistoricData : []}
+            products={!productHistoricLoading ? productHistoric : []}
           />
         </div>
       </div>
