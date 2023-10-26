@@ -124,7 +124,7 @@ const NavBar = () => {
 
             <NavbarBtn
               Icon={ArrowLeftOnRectangleIcon}
-              label={"Déconnexion"}
+              label={"Logout"}
               onClickAction={() => handleClearCookies()}
             />
           </div>
