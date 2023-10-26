@@ -42,14 +42,13 @@
   transform: rotate(360deg);
 }
 
-
 /* Navbar top text */
 .userInfos {
   display: flex;
   flex-direction: row;
-  align-items: center; 
+  align-items: center;
   gap: 1rem;
-  width: 150px; 
+  width: 150px;
 }
 
 .imageWrapper {
@@ -117,5 +116,3 @@
     opacity: 0;
   }
 }
-
-
