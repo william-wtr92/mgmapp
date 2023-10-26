@@ -12,12 +12,13 @@ import {
 import { useCallback, useEffect, useState } from "react"
 import classNames from "classnames"
 import getFormValues from "@/services/getForm"
-import { ModalType, addProductType } from "@/types/modal/ModalType"
+import { ModalType, addProductType, updateProductType } from "@/types/modal/ModalType"
 import FormikForm from "../utils/FormikForm"
 import Modal from "./Modal"
 import { NavbarBtn } from "../utils/NavbarBtn"
 import addProduct from "@/services/products/addProduct"
 import { useRouter } from "next/router"
+import { addProductInitialValues, addProductValidationSchema } from "@/types/product/InitialValues"
 
 const NavBar = () => {
   const [modalType, setModalType] = useState<ModalType>("")
@@ -117,18 +118,16 @@ const NavBar = () => {
         </div>
       </div>
 
-      <Modal opened={modalType.length > 0} size={"medium"}>
+      <Modal opened={modalType === addProductType} size={"medium"}>
         <div className={styles.formContainer}>
-          {initialValues && (
-            <FormikForm
-              formTitle={"Ajouter un produit"}
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              handleSubmit={addProduct}
-              submitBtnText={submitBtnText}
-              setModalType={setModalType}
-            />
-          )}
+          <FormikForm
+            formTitle={"Ajouter un produit"}
+            initialValues={addProductInitialValues}
+            validationSchema={addProductValidationSchema}
+            handleSubmit={addProduct}
+            submitBtnText={submitBtnText}
+            setModalType={setModalType}
+          />
         </div>
       </Modal>
     </>

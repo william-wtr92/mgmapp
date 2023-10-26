@@ -22,14 +22,17 @@ const Modal: FC<Props> = (props) => {
 
 
   return (
-    <div className={classNames(
-      styles.modal,
-      opened ? styles.opened : styles.closed,
-      modalSize()
-    )}
-    >
-      {children}
+    <div className={styles.overlay}>
+      <div className={classNames(
+        styles.modal,
+        opened ? styles.opened : styles.closed,
+        modalSize()
+      )}
+      >
+        {children}
+      </div>
     </div>
+
   )
 }
 

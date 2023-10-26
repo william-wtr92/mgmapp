@@ -1,24 +1,29 @@
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
 .modal {
-  position: fixed;
   margin: 0 auto;
-  top: -20%;
-  left: 37vw;
   padding: 1.25rem;
   border-radius: 1rem;
-  transition-duration: 500ms;
+  transition: 800ms cubic-bezier(.95, .6, .26, .83);
   background-color: var(--secondary);
   -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.73);
   box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.73);
-}
-
-.modal > * {
-  transition-duration: 500ms;
+  
 }
 
 .opened {
-  transition-duration: 500ms;
-  top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(38%);
+}
+
+.closed {
+  transform: translateY(-110%);
 }
 
 /* Modal sizes */
