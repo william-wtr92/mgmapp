@@ -51,6 +51,7 @@
   max-height: 85vh;
   overflow-y: auto;
   width: 100%;
+  padding: 0rem 2rem;
 }
 
 .image {
@@ -62,7 +63,7 @@
 }
 
 .unit td {
-  padding: 1rem 3rem;
+  padding: 2rem 3rem 2rem 3rem;
   text-align: left;
 }
 

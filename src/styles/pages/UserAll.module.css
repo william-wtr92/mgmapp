@@ -51,6 +51,12 @@
   width: 100%;
 }
 
+.unit td {
+  padding: 1rem 1rem;
+
+  text-align: center;
+}
+
 .image {
   border-radius: 15px;
 }

@@ -30,7 +30,10 @@ import {
 import { parseCookies } from "nookies"
 import parseSession from "@/services/helper/parseSession"
 import useGetLowerStockProducts from "@/services/hooks/useGetLowerStockProducts"
-import { addCategoryInitialValues, addCategoryValidationSchema } from "@/types/category/InitialValues"
+import {
+  addCategoryInitialValues,
+  addCategoryValidationSchema,
+} from "@/types/category/InitialValues"
 import addCategory from "@/services/category/addCategory"
 
 const NavBar = () => {
@@ -44,7 +47,7 @@ const NavBar = () => {
   const session = parseSession(jwtToken)
   const userId = session ? session.user.id : null
 
-  const { refreshLowerStockProducts } = useGetLowerStockProducts(); 
+  const { refreshLowerStockProducts } = useGetLowerStockProducts()
 
   useEffect(() => {
     setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
@@ -99,7 +102,7 @@ const NavBar = () => {
           <h1 className={styles.groupTitle}>Menu</h1>
 
           <div className={styles.links}>
-            <NavLink Icon={HomeIcon} href="/" label={"Home"}>
+            <NavLink Icon={HomeIcon} href="/" label={"Accueil"}>
               {""}
             </NavLink>
 
