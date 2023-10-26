@@ -24,6 +24,11 @@ const FormikForm = (props: Props) => {
     setModalType,
   } = props
 
+  const handleSubmitActions = (values: any) => {
+    handleSubmit(values)
+    setModalType("")
+  }
+
   return (
     <>
       <p className={styles.formTitle}>{formTitle}</p>
@@ -54,8 +59,7 @@ const FormikForm = (props: Props) => {
               <Button
                 label={submitBtnText}
                 onClickAction={() => {
-                  handleSubmit(values)
-                  setModalType("")
+                  handleSubmitActions(values)
                 }}
               />
             </Form>

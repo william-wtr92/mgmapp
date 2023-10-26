@@ -1,3 +1,4 @@
+import Head from "next/head"
 import Layout from "@/components/ui/Layout"
 import "@/styles/globals.css"
 import "@fontsource/chivo"
@@ -26,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
       router.push("/login")
     }
 
-    if (session && router.pathname == "/login") {
+    if (session && router.pathname === "/login") {
       router.push("/")
     }
   }, [router, token])
@@ -34,5 +35,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const renderWithLayout =
     (Component as any).getLayout || ((page: any) => <Layout>{page}</Layout>)
 
-  return <>{renderWithLayout(<Component {...pageProps} />)}</>
+  return (
+    <>
+      <Head>
+        <title>SDM x Roland</title>
+      </Head>
+      {renderWithLayout(<Component {...pageProps} />)}
+    </>
+  )
 }

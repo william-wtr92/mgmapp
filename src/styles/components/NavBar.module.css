@@ -11,6 +11,7 @@
   padding-top: 2rem;
   transition: 500ms;
   overflow: hidden;
+  min-width: calc(20px + 31px);
 }
 
 /* Styles for open / closed menu state */

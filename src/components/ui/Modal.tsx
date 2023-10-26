@@ -1,15 +1,18 @@
-import React, { FC }  from 'react'
+import React, { Dispatch, FC, SetStateAction, useCallback }  from 'react'
 import styles from "@/styles/components/Modal.module.css"
 import classNames from 'classnames';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { ModalType } from '@/types/modal/ModalType';
 
 export type Props = {
   children: any;
   opened: boolean;
   size: string;
+  setModalType: Dispatch<SetStateAction<ModalType>>;
 }
 
 const Modal: FC<Props> = (props) => {
-  const { children, opened, size } = props
+  const { children, opened, size, setModalType } = props
 
   const modalSize = () => {
     switch (size) {
@@ -20,15 +23,31 @@ const Modal: FC<Props> = (props) => {
     }
   }
 
+  const closeModal = useCallback(() => {
+    setModalType("")
+  }, []);
+
 
   return (
-    <div className={styles.overlay}>
+    <div className={classNames(
+      styles.overlay,
+      !opened ? styles.hidden : styles.visible
+    )}
+    >
       <div className={classNames(
         styles.modal,
         opened ? styles.opened : styles.closed,
         modalSize()
       )}
       >
+        <button
+          className={styles.closeButton}
+          onClick={() => closeModal()}
+        >
+          <XMarkIcon className={styles.icon} />
+          <p>Fermer</p>
+        </button>
+
         {children}
       </div>
     </div>

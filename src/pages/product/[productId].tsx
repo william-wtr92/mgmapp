@@ -28,13 +28,16 @@ const ProductDetail = (props: any) => {
   }, [])
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Détail du produit</h1>
-      <div className={styles.card}>
+    <main className={styles.container}>
+
+      <div className={styles.leftContainer}>
+        <h1 className={styles.title}>Détail du produit</h1>
+
         <div className={styles.details}>
           <label className={styles.labels}>Nom du produit</label>
           <p className={styles.data}>{productDetailData?.name}</p>
         </div>
+
         <div className={styles.details}>
           <label className={styles.labels}>Description du produit</label>
           <textarea
@@ -43,36 +46,45 @@ const ProductDetail = (props: any) => {
             readOnly
           />
         </div>
+
         <div className={styles.details}>
           <label className={styles.labels}>Date de création du produit</label>
           <p className={styles.data}>
             {moment(productDetailData?.createdAt).format("DD/MM/YYYY HH:mm")}
           </p>
         </div>
+
         <div className={styles.details}>
           <label className={styles.labels}>Stock du produit</label>
           <p className={styles.data}>{productDetailData?.stock}</p>
         </div>
+
         <div className={styles.details}>
           <label className={styles.labels}>Category Id</label>
           <p className={styles.data}>{productDetailData?.categoryId}</p>
         </div>
       </div>
-      <h2 className={styles.title}>Actions</h2>
-      <div className={styles.iconsContainer}>
-        <div className={styles.iconsUnit}>
-          <PencilSquareIcon className={styles.icons} />
-          <label className={styles.labelsIcon}>Modifier</label>
-        </div>
-        <div
-          className={styles.iconsUnit}
-          onClick={() => handleDelete(productDetailData.id)}
-        >
-          <TrashIcon className={styles.icons} />
-          <label className={styles.labelsIcon}>Supprimer</label>
+
+      <div className={styles.rightContainer}>
+        <h2 className={styles.title}>Actions</h2>
+
+        <div className={styles.iconsContainer}>
+          <div className={styles.iconsUnit}>
+            <PencilSquareIcon className={styles.icons} />
+            <label className={styles.labelsIcon}>Modifier</label>
+          </div>
+
+          <div
+            className={styles.iconsUnit}
+            onClick={() => handleDelete(productDetailData.id)}
+          >
+            <TrashIcon className={styles.icons} />
+            <label className={styles.labelsIcon}>Supprimer</label>
+          </div>
         </div>
       </div>
-    </div>
+
+    </main>
   )
 }
 

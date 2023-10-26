@@ -25,6 +25,7 @@ const handler = mw({
         products = await ProductModel.query()
           .select()
           .whereRaw('LOWER("name") LIKE ?', `%${search}%`)
+          .withGraphFetched("category")
       }
 
       res.send({ result: products })

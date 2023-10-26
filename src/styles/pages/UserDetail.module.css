@@ -1,43 +1,30 @@
 .container {
-  width: 40%;
+  width: 30%;
   margin: 20px 20px;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+  background: var(--secondary);
   border-radius: 15px;
-  
 }
 
 .title {
+  padding-top: 1.5rem;
   font-size: 1.8rem;
-  margin: 0;
 }
 
-.leftContainer {
+.card {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2rem;
+  padding: 20px;
   width: 80%;
-  background-color: var(--secondary);
-  border-radius: 1rem;
-}
-
-.rightContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-
-  background-color: var(--secondary);
-  border-radius: 1rem;
-  padding: 2rem 1rem;
-  height: fit-content;
+  padding-top: 1rem;
 }
 
 .labels {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .details {
@@ -66,8 +53,6 @@
   justify-content: center;
   height: 4rem;
   font-size: 0.8rem;
-  resize: none;
-  min-height: 100px;
 }
 
 .textarea:focus {
@@ -80,8 +65,9 @@
 
 .iconsContainer {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  justify-content: space-between;
+  width: 60%;
+  padding-top: 1rem;
 }
 
 .iconsUnit {

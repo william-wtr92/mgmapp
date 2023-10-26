@@ -12,13 +12,22 @@ import {
 import { useCallback, useEffect, useState } from "react"
 import classNames from "classnames"
 import getFormValues from "@/services/getForm"
-import { ModalType, addProductType, updateProductType } from "@/types/modal/ModalType"
+import {
+  ModalType,
+  addProductType,
+  updateProductType,
+} from "@/types/modal/ModalType"
 import FormikForm from "../utils/FormikForm"
 import Modal from "./Modal"
 import { NavbarBtn } from "../utils/NavbarBtn"
 import addProduct from "@/services/products/addProduct"
 import { useRouter } from "next/router"
-import { addProductInitialValues, addProductValidationSchema } from "@/types/product/InitialValues"
+import {
+  addProductInitialValues,
+  addProductValidationSchema,
+} from "@/types/product/InitialValues"
+import { parseCookies } from "nookies"
+import parseSession from "@/services/helper/parseSession"
 
 const NavBar = () => {
   const [modalType, setModalType] = useState<ModalType>("")
@@ -28,6 +37,11 @@ const NavBar = () => {
   const [submitBtnText, setSubmitBtnText] = useState<any>("")
   const [open, setOpen] = useState<boolean>(true)
   const router = useRouter()
+
+  const cookies = parseCookies()
+  const jwtToken = cookies["token"]
+  const session = parseSession(jwtToken)
+  const userId = session ? session.user.id : null
 
   useEffect(() => {
     setInitialValues(getFormValues(modalType)?.initialValues)
@@ -105,7 +119,7 @@ const NavBar = () => {
           <h1 className={styles.groupTitle}>Settings</h1>
 
           <div className={styles.links}>
-            <NavLink Icon={UserIcon} href="/" label={"Profile"}>
+            <NavLink Icon={UserIcon} href={`/user/${userId}`} label={"Profile"}>
               {""}
             </NavLink>
 
@@ -118,7 +132,11 @@ const NavBar = () => {
         </div>
       </div>
 
-      <Modal opened={modalType === addProductType} size={"medium"}>
+      <Modal
+        opened={modalType === addProductType}
+        size={"medium"}
+        setModalType={setModalType}
+      >
         <div className={styles.formContainer}>
           <FormikForm
             formTitle={"Ajouter un produit"}
