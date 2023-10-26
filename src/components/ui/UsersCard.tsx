@@ -2,9 +2,36 @@ import styles from "@/styles/components/UsersCard.module.css"
 import Image from "next/image"
 import { NavLink } from "../utils/NavLink"
 import Button from "../Button"
+import { parseCookies } from "nookies"
+import parseSession from "@/services/helper/parseSession"
+import useGetUserDetail from "@/services/users/getUserById"
+import Modal from "./Modal"
+import { useCallback, useEffect, useState } from "react"
+import { ModalType, addUserType, updateProductType } from "@/types/modal/ModalType"
+import FormikForm from "../utils/FormikForm"
+import { addUserInitialValues, addUserValidationSchema } from "@/types/user/InitialValues"
+import addUser from "@/services/users/addUser"
+import useGetUsers from "@/services/users/getUsers"
 
 const UsersCard = (props: any) => {
-  const { users } = props
+  // const { users,  } = props
+
+  const { userData, userError, userLoading, updateUsers } = useGetUsers()
+  const users = !userLoading ? userData : []
+
+  const cookies = parseCookies()
+  const jwtToken = cookies["token"]
+  const session = parseSession(jwtToken)
+  const userId = session ? session.user.id : null
+
+  const [modalType, setModalType] = useState<ModalType>("")
+
+  const { userDetailData, userDetailError, userDetailLoading } = useGetUserDetail(userId);
+  const user = (!userDetailError && !userDetailLoading) ? userDetailData : {};
+
+  useEffect(() => {
+    updateUsers(userData);
+  }, [modalType])
 
   return (
     <div className={styles.container}>
@@ -34,12 +61,32 @@ const UsersCard = (props: any) => {
           ))}
 
         <div className={styles.add}>
-          <Button
-            label={"Ajouter un membre"}
-            onClickAction={() => console.log("test")}
-          />
+          {user?.roleData?.right === "manager" && (
+            <Button
+              label={"Ajouter un membre"}
+              onClickAction={() => setModalType(addUserType)}
+            />
+          )}
         </div>
       </div>
+
+      <Modal
+        opened={modalType === addUserType}
+        size={"medium"}
+        setModalType={setModalType}
+      >
+        <div className={styles.formContainer}>
+          <FormikForm
+            formTitle={"Ajouter un membre"}
+            initialValues={addUserInitialValues}
+            validationSchema={addUserValidationSchema}
+            handleSubmit={addUser}
+            submitBtnText={"Ajouter"}
+            setModalType={setModalType}
+            updateData={updateUsers}
+          />
+        </div>
+      </Modal>
     </div>
   )
 }

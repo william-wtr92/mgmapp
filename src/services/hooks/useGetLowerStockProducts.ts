@@ -16,12 +16,13 @@ const fetcher = async (url: string) => {
 const useGetLowerStockProducts = () => {
   const url = 'http://localhost:3000/api/product/stock'
 
-  const { data, error, isLoading } = useSWR(url, fetcher);
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher);
 
   return {
     lowerStockProductsData: data,
     lowerStockProductsError: error,
-    lowerStockProductsIsLoading: isLoading
+    lowerStockProductsIsLoading: isLoading,
+    refreshLowerStockProducts: mutate
   }
 }
 

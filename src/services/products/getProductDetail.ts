@@ -16,12 +16,13 @@ const fetcher = async (url: string) => {
 const useGetDetailProduct = (productId: number) => {
   const url = `http://localhost:3000/api/product/${productId}`
 
-  const { data, error, isLoading } = useSWR(url, fetcher)
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher)
 
   return {
     productDetailData: data,
     productDetailError: error,
     productDetailLoading: isLoading,
+    refreshProductDetail: mutate
   }
 }
 
