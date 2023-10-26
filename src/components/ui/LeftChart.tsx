@@ -131,7 +131,8 @@ const LeftChart = () => {
         <div className={styles.stats}>
           <div className={styles.graphDog}>
             <Doughnut data={productByCat as any} options={options as any} />
-          </div>
+            </div>
+            
           <div className={styles.graphBar}>
             <Bar data={historicData as any} options={options as any} />
           </div>

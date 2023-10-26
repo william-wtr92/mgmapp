@@ -2,11 +2,8 @@ import HistoricProducts from "@/components/ui/HistoricProducts"
 import LeftChart from "@/components/ui/LeftChart"
 import SearchBar from "@/components/ui/SearchBar"
 import UsersCard from "@/components/ui/UsersCard"
-import parseSession from "@/services/helper/parseSession"
 import useGetLowerStockProducts from "@/services/hooks/useGetLowerStockProducts"
 import useGetHistoricProducts from "@/services/products/getLastProducts"
-import useGetSearchProduct from "@/services/products/searchProduct"
-import useGetUserDetail from "@/services/users/getUserById"
 import useGetUsers from "@/services/users/getUsers"
 import styles from "@/styles/pages/Home.module.css"
 import {
@@ -16,11 +13,10 @@ import {
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline"
 import classNames from "classnames"
-import { parseCookies } from "nookies"
-import { useCallback, useState } from "react"
+import { useRouter } from "next/router"
 
 const Home = () => {
-
+  const router = useRouter();
     
   const { lowerStockProductsData, lowerStockProductsError, lowerStockProductsIsLoading } = useGetLowerStockProducts();
   const lowerStockProducts = !lowerStockProductsIsLoading && lowerStockProductsData;
@@ -44,7 +40,11 @@ const Home = () => {
             {!lowerStockProductsIsLoading &&
               lowerStockProducts.map((product: any, i: number) => {
                 return (
-                  <div key={i} className={styles.categoryBlock}>
+                  <div
+                    key={i}
+                    className={styles.categoryBlock}
+                    onClick={() => router.push(`/product/${product.id}`)}
+                  >
                     {product.stock <= 50 && (
                       <ExclamationTriangleIcon
                         className={classNames(

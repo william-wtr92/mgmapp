@@ -7,20 +7,23 @@
   position: sticky;
   border-radius: 20px;
   padding: 20px;
-  margin: 20px;
   padding-top: 2rem;
   transition: 500ms;
   overflow: hidden;
-  min-width: calc(20px + 31px);
+  min-width: calc(20px + 48px + 20px);
 }
 
 /* Styles for open / closed menu state */
 .open {
-  width: 200px !important;
+  min-width: 200px !important;
+  width: 200px;
+  /* min-width: 15% !important;
+    width: 15%; */
 }
 
 .closed {
-  width: calc(20px + 31px);
+  min-width: calc(20px + 48px + 20px);
+  width: calc(20px + 48px + 20px);
 }
 /*  */
 
@@ -28,7 +31,7 @@
   position: absolute;
   bottom: 1rem;
   left: 1.5rem;
-  height: 1.5rem;
+  height: 2.5rem;
   background-color: var(--primary);
   padding: 10px;
   border-radius: 30px;

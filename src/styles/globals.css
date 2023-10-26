@@ -1,9 +1,14 @@
 body {
   margin: 0;
+  padding: 0;  
   width: 100vw;
   height: 100vh;
   background-color: var(--primary);
   font-weight: 200;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -25,6 +30,8 @@ html {
   --overlay-background: rgba(0, 0, 0, 0.5);
   max-height: 100vh;
   font-family: "Chivo";
+  margin: 0;
+  padding: 0;
 }
 
 a {

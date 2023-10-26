@@ -9,12 +9,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .graphDog {
-  width: 40%;
+  width: 35%;
 }
 
 .graphBar {
-  flex: 1;
+  width: 50%;
 }
