@@ -6,7 +6,7 @@ type Props = {
   type: string;
   placeholder?: string;
   label?: string;
-  value?: string;
+  value?: any;
   name?: string;
 }
 
@@ -25,7 +25,8 @@ const FormikField = (props: Props) => {
               className={styles.input}
               type={type}
               placeholder={placeholder}
-              value={value}
+              // value={value}
+              defaultValue={value}
               name={name}
             />
           </label>

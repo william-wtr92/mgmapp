@@ -16,12 +16,13 @@ const fetcher = async (url: string) => {
 const useGetUsers = () => {
   const url = "http://localhost:3000/api/user/all"
 
-  const { data, error, isLoading } = useSWR(url, fetcher)
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher)
 
   return {
     userData: data,
     userError: error,
     userLoading: isLoading,
+    updateUsers: mutate
   }
 }
 

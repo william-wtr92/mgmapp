@@ -14,10 +14,7 @@ import { parseCookies } from "nookies"
 import { useCallback, useState } from "react"
 
 const Home = () => {
-
-  const { userData, userError, userLoading } = useGetUsers()
-  const { productHistoricData, productHistoricError, productHistoricLoading } =
-    useGetHistoricProducts()
+  const { productHistoricData, productHistoricError, productHistoricLoading } = useGetHistoricProducts()
   const productHistoric = (!productHistoricLoading && !productHistoricError) && productHistoricData;
     
   const { lowerStockProductsData, lowerStockProductsError, lowerStockProductsIsLoading } = useGetLowerStockProducts();
@@ -86,7 +83,8 @@ const Home = () => {
 
       <div className={styles.rightContainer}>
         <div className={styles.topContainer}>
-          <UsersCard users={!userLoading ? userData : []} />
+          <UsersCard
+          />
         </div>
 
         <div className={styles.bottomContainer}>

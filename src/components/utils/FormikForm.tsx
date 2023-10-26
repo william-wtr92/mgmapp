@@ -4,6 +4,8 @@ import FormikField from "../FormikField"
 import Button from "../Button"
 import styles from "@/styles/components/FormikForm.module.css"
 import { ModalType } from "@/types/modal/ModalType"
+import useGetUsers from "@/services/users/getUsers"
+import { KeyedMutator } from "swr"
 
 type Props = {
   formTitle: string
@@ -11,7 +13,8 @@ type Props = {
   validationSchema: any
   handleSubmit: (values: any) => void
   submitBtnText: string
-  setModalType: Dispatch<SetStateAction<ModalType>>
+  setModalType: Dispatch<SetStateAction<ModalType>>,
+  updateData?: KeyedMutator<any>;
 }
 
 const FormikForm = (props: Props) => {
@@ -22,11 +25,14 @@ const FormikForm = (props: Props) => {
     handleSubmit,
     submitBtnText,
     setModalType,
+    updateData
   } = props
+
 
   const handleSubmitActions = (values: any) => {
     handleSubmit(values)
     setModalType("")
+    updateData && updateData();
   }
 
   return (
@@ -52,6 +58,7 @@ const FormikForm = (props: Props) => {
                       placeholder={key}
                       name={key}
                       label={key}
+                      value={value}
                     />
                   )
                 })}

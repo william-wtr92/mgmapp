@@ -28,12 +28,10 @@ import {
 } from "@/types/product/InitialValues"
 import { parseCookies } from "nookies"
 import parseSession from "@/services/helper/parseSession"
+import useGetLowerStockProducts from "@/services/hooks/useGetLowerStockProducts"
 
 const NavBar = () => {
   const [modalType, setModalType] = useState<ModalType>("")
-  const [initialValues, setInitialValues] = useState<any>("")
-  const [validationSchema, setValidationSchema] = useState<any>("")
-  const [onSubmitFunc, setOnSubmitFunc] = useState<any>()
   const [submitBtnText, setSubmitBtnText] = useState<any>("")
   const [open, setOpen] = useState<boolean>(true)
   const router = useRouter()
@@ -43,20 +41,15 @@ const NavBar = () => {
   const session = parseSession(jwtToken)
   const userId = session ? session.user.id : null
 
+  const { refreshLowerStockProducts } = useGetLowerStockProducts(); 
+
   useEffect(() => {
-    setInitialValues(getFormValues(modalType)?.initialValues)
-    setValidationSchema(getFormValues(modalType)?.validationSchema)
     setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
   }, [modalType])
 
   const handleOpen = useCallback(() => {
     setOpen(!open)
   }, [open])
-
-  const setProductModalType = useCallback(() => {
-    setModalType(modalType !== addProductType ? addProductType : "")
-    setOnSubmitFunc(addProduct)
-  }, [modalType])
 
   const handleClearCookies = useCallback(() => {
     document.cookie = "token" + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;"
@@ -109,23 +102,29 @@ const NavBar = () => {
 
             <NavbarBtn
               Icon={FolderPlusIcon}
-              label={"Ajouter"}
-              onClickAction={() => setProductModalType()}
+              label={"Produit"}
+              onClickAction={() => setModalType(addProductType)}
+            />
+
+            <NavbarBtn
+              Icon={FolderPlusIcon}
+              label={"Catégorie"}
+              onClickAction={() => setModalType(addProductType)}
             />
           </div>
         </div>
 
         <div className={styles.groupLinks}>
-          <h1 className={styles.groupTitle}>Settings</h1>
+          <h1 className={styles.groupTitle}>Paramètres</h1>
 
           <div className={styles.links}>
-            <NavLink Icon={UserIcon} href={`/user/${userId}`} label={"Profile"}>
+            <NavLink Icon={UserIcon} href={`/user/${userId}`} label={"Profil"}>
               {""}
             </NavLink>
 
             <NavbarBtn
               Icon={ArrowLeftOnRectangleIcon}
-              label={"Logout"}
+              label={"Déconnexion"}
               onClickAction={() => handleClearCookies()}
             />
           </div>
@@ -145,6 +144,7 @@ const NavBar = () => {
             handleSubmit={addProduct}
             submitBtnText={submitBtnText}
             setModalType={setModalType}
+            updateData={refreshLowerStockProducts}
           />
         </div>
       </Modal>

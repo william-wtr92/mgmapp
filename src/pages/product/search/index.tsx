@@ -1,5 +1,5 @@
 import useGetSearchProduct from '@/services/products/searchProduct'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styles from "@/styles/pages/SearchProductPage.module.css"
 import SearchBar from '@/components/ui/SearchBar'
 import { ShoppingBagIcon } from '@heroicons/react/24/outline'
@@ -24,28 +24,39 @@ const SearchProductPage = (props: Props) => {
   const { search } = props;
   const router = useRouter();
 
-  const [searchValue, setSearchValue] = useState<string>(search);
+  const [activeSearchValue, setActiveSearchValue] = useState<string>(search);
 
-  const { productsSearchData, productsSearchError, productsSearchLoading, updateProductsSearch } =
-    useGetSearchProduct(searchValue);
+  const {
+    productsSearchData,
+    productsSearchError,
+    productsSearchLoading,
+    updateProductsSearch
+  } = useGetSearchProduct(activeSearchValue);
   const productsSearched = (!productsSearchLoading && !productsSearchError) ? productsSearchData : [];
 
   const redirectToProductPage = useCallback((id: number) => {
     router.push(`/product/${id}`)
   }, []);
 
+  useEffect(() => {
+    updateProductsSearch();
+  }, [activeSearchValue])
+
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>
-        Produits contenant la recherche : "{searchValue}"
+        Produits contenant la recherche : "{activeSearchValue}"
       </h1>
 
       <div className={styles.searchBarWrapper}>
-        <SearchBar defaultValue={searchValue} />
+        <SearchBar
+          defaultValue={search}
+          setActiveSearch={setActiveSearchValue}
+        />
       </div>
 
       <div className={styles.productCardContainer}>
-        {productsSearched.map((product: any, index: number) => {
+        {(productsSearched && productsSearched.length > 0) ? (productsSearched.map((product: any, index: number) => {
           return (
             <div className={styles.productCard}>
               <div className={styles.iconWrapper}>
@@ -63,7 +74,11 @@ const SearchProductPage = (props: Props) => {
                 onClickAction={() => redirectToProductPage(product.id)} />
             </div>
           )
-        })}
+        })) : (
+          <p className={styles.noProductsText}>
+            Aucun produit ne correspond à cette recherche
+          </p>
+        )}
       </div>
     </main>
   )

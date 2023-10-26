@@ -6,10 +6,11 @@ import { useCallback, useEffect, useState } from "react"
 
 type Props = {
   defaultValue?: string;
+  setActiveSearch?: (str: string) => void;
 }
 
 const SearchBar = (props: Props) => {
-  const { defaultValue } = props
+  const { defaultValue, setActiveSearch } = props
   const router = useRouter()
   const [value, setValue] = useState<string>(defaultValue ? defaultValue : "")
 
@@ -18,7 +19,7 @@ const SearchBar = (props: Props) => {
   }, [value])
 
   const handleSubmit = useCallback(() => {
-    router.push(`/product/search?search=${value}`)
+    setActiveSearch ? setActiveSearch(value) : router.push(`/product/search?search=${value}`)
   }, [value]);
 
   useEffect(() => {
@@ -42,11 +43,11 @@ const SearchBar = (props: Props) => {
   return (
     <div className={styles.container}>
       <MagnifyingGlassIcon className={styles.icon} />
+      
       <input
         id="productSearchBar"
         type="search"
         value={value}
-        // defaultValue={defaultValue ? defaultValue : ""}
         onChange={handleChange}
         className={styles.search}
         placeholder="Rechercher ..."
