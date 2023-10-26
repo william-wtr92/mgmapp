@@ -1,6 +1,6 @@
 import getApiClient from "../getApiClient"
 
-const addCategory = async (values: any) => {
+const addCategory = async (values: any): Promise<[null, boolean] | [any]> => {
   const reqInstance = getApiClient(null)
   const url = "http://localhost:3000/api/category"
 

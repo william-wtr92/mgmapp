@@ -17,8 +17,6 @@
 .open {
   min-width: 200px !important;
   width: 200px;
-  /* min-width: 15% !important;
-    width: 15%; */
 }
 
 .closed {

@@ -16,7 +16,6 @@ import {
   ModalType,
   addCategoryType,
   addProductType,
-  updateProductType,
 } from "@/types/modal/ModalType"
 import FormikForm from "../utils/FormikForm"
 import Modal from "./Modal"
@@ -35,6 +34,7 @@ import {
   addCategoryValidationSchema,
 } from "@/types/category/InitialValues"
 import addCategory from "@/services/category/addCategory"
+import useGetHistoricProducts from "@/services/products/getLastProducts"
 
 const NavBar = () => {
   const [modalType, setModalType] = useState<ModalType>("")
@@ -47,7 +47,8 @@ const NavBar = () => {
   const session = parseSession(jwtToken)
   const userId = session ? session.user.id : null
 
-  const { refreshLowerStockProducts } = useGetLowerStockProducts()
+  const { refreshLowerStockProducts } = useGetLowerStockProducts();
+  const { refreshProductHistoric } = useGetHistoricProducts();
 
   useEffect(() => {
     setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
@@ -61,6 +62,11 @@ const NavBar = () => {
     document.cookie = "token" + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;"
     router.push("/login")
   }, [])
+
+  const refreshDatas = useCallback(() => {
+    refreshLowerStockProducts()
+    refreshProductHistoric()
+  }, []);
 
   return (
     <>
@@ -150,7 +156,7 @@ const NavBar = () => {
             handleSubmit={addProduct}
             submitBtnText={submitBtnText}
             setModalType={setModalType}
-            updateData={refreshLowerStockProducts}
+            updateData={refreshDatas}
           />
         </div>
       </Modal>
@@ -168,7 +174,7 @@ const NavBar = () => {
             handleSubmit={addCategory}
             submitBtnText={"Ajouter"}
             setModalType={setModalType}
-            updateData={refreshLowerStockProducts}
+            updateData={refreshDatas}
           />
         </div>
       </Modal>

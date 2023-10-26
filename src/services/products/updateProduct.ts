@@ -1,7 +1,7 @@
 import getApiClient from "../getApiClient";
 
 
-const updateProduct = async (productId: number, values: any) => {
+const updateProduct = async (productId: number, values: any): Promise<[null, boolean] | [any]> => {
   const url = `http://localhost:3000/api/product/${productId}`;
   const reqInstance = getApiClient(null);
 

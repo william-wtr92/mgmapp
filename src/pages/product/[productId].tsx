@@ -55,7 +55,7 @@ const ProductDetail = (props: any) => {
     })
   }, [productDetail, productDetailLoading]);
 
-  const handleUpdateProduct = useCallback((values: any) => {
+  const handleUpdateProduct = useCallback((values: any): any => {
     updateProduct(productDetail.id, values)
   }, [productDetail]);
 

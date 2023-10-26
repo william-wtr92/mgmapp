@@ -11,10 +11,10 @@ type Props = {
   formTitle: string
   initialValues: any
   validationSchema: any
-  handleSubmit: (values: any) => void
+  handleSubmit: (values: any) => Promise<[null, boolean] | [any]>;
   submitBtnText: string
   setModalType: Dispatch<SetStateAction<ModalType>>,
-  updateData?: KeyedMutator<any>;
+  updateData: () => void;
 }
 
 const FormikForm = (props: Props) => {
@@ -29,10 +29,10 @@ const FormikForm = (props: Props) => {
   } = props
 
 
-  const handleSubmitActions = (values: any) => {
-    handleSubmit(values)
+  const handleSubmitActions = async (values: any) => {
+    await handleSubmit(values)
     setModalType("")
-    updateData && updateData();
+    updateData();
   }
 
   return (

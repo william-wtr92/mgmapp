@@ -14,11 +14,6 @@ import addUser from "@/services/users/addUser"
 import useGetUsers from "@/services/users/getUsers"
 
 const UsersCard = (props: any) => {
-  // const { users,  } = props
-
-  const { userData, userError, userLoading, updateUsers } = useGetUsers()
-  const users = !userLoading ? userData : []
-
   const cookies = parseCookies()
   const jwtToken = cookies["token"]
   const session = parseSession(jwtToken)
@@ -26,12 +21,24 @@ const UsersCard = (props: any) => {
 
   const [modalType, setModalType] = useState<ModalType>("")
 
-  const { userDetailData, userDetailError, userDetailLoading } = useGetUserDetail(userId);
+  const {
+    userData,
+    userError,
+    userLoading,
+    updateUsers
+  } = useGetUsers(null)
+  const users = !userLoading ? userData : []
+
+  const {
+    userDetailData,
+    userDetailError,
+    userDetailLoading
+  } = useGetUserDetail(userId);
   const user = (!userDetailError && !userDetailLoading) ? userDetailData : {};
 
-  useEffect(() => {
-    updateUsers(userData);
-  }, [modalType])
+  const refreshData = () => {
+    updateUsers();
+  }
 
   return (
     <div className={styles.container}>
@@ -83,7 +90,7 @@ const UsersCard = (props: any) => {
             handleSubmit={addUser}
             submitBtnText={"Ajouter"}
             setModalType={setModalType}
-            updateData={updateUsers}
+            updateData={refreshData}
           />
         </div>
       </Modal>

@@ -1,7 +1,7 @@
 import getApiClient from "../getApiClient";
 
 
-const addUser = async(values: any) => {
+const addUser = async(values: any): Promise<[null, boolean] | [any]> => {
   const url = "http://localhost:3000/api/user/add";
   const reqInstance = getApiClient(null);
 

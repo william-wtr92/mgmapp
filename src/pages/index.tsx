@@ -18,14 +18,19 @@ import { useRouter } from "next/router"
 const Home = () => {
   const router = useRouter();
     
-  const { lowerStockProductsData, lowerStockProductsError, lowerStockProductsIsLoading } = useGetLowerStockProducts();
+  const {
+    lowerStockProductsData,
+    lowerStockProductsError,
+    lowerStockProductsIsLoading,
+  } = useGetLowerStockProducts();
   const lowerStockProducts = !lowerStockProductsIsLoading && lowerStockProductsData;
 
-  const { userData, userError, userLoading } = useGetUsers()
-  const { productHistoricData, productHistoricError, productHistoricLoading } =
-    useGetHistoricProducts()
-  const productHistoric =
-    !productHistoricLoading && !productHistoricError && productHistoricData
+  const {
+    productHistoricData,
+    productHistoricError,
+    productHistoricLoading
+  } = useGetHistoricProducts()
+  const productHistoric = !productHistoricLoading && !productHistoricError && productHistoricData
 
   return (
     <main className={styles.container}>

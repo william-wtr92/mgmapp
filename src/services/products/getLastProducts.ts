@@ -16,12 +16,13 @@ const fetcher = async (url: string) => {
 const useGetHistoricProducts = () => {
   const url = "http://localhost:3000/api/product/historic"
 
-  const { data, error, isLoading } = useSWR(url, fetcher)
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher)
 
   return {
     productHistoricData: data,
     productHistoricError: error,
     productHistoricLoading: isLoading,
+    refreshProductHistoric: mutate
   }
 }
 

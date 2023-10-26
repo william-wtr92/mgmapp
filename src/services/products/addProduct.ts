@@ -1,6 +1,6 @@
 import getApiClient from "../getApiClient"
 
-const addProduct = async (values: any) => {
+const addProduct = async (values: any): Promise<[null, boolean] | [any]> => {
   const reqInstance = getApiClient(null)
   const url = "http://localhost:3000/api/product/add"
 
