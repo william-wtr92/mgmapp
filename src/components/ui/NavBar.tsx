@@ -14,6 +14,7 @@ import classNames from "classnames"
 import getFormValues from "@/services/getForm"
 import {
   ModalType,
+  addCategoryType,
   addProductType,
   updateProductType,
 } from "@/types/modal/ModalType"
@@ -29,6 +30,8 @@ import {
 import { parseCookies } from "nookies"
 import parseSession from "@/services/helper/parseSession"
 import useGetLowerStockProducts from "@/services/hooks/useGetLowerStockProducts"
+import { addCategoryInitialValues, addCategoryValidationSchema } from "@/types/category/InitialValues"
+import addCategory from "@/services/category/addCategory"
 
 const NavBar = () => {
   const [modalType, setModalType] = useState<ModalType>("")
@@ -109,7 +112,7 @@ const NavBar = () => {
             <NavbarBtn
               Icon={FolderPlusIcon}
               label={"Catégorie"}
-              onClickAction={() => setModalType(addProductType)}
+              onClickAction={() => setModalType(addCategoryType)}
             />
           </div>
         </div>
@@ -143,6 +146,24 @@ const NavBar = () => {
             validationSchema={addProductValidationSchema}
             handleSubmit={addProduct}
             submitBtnText={submitBtnText}
+            setModalType={setModalType}
+            updateData={refreshLowerStockProducts}
+          />
+        </div>
+      </Modal>
+
+      <Modal
+        opened={modalType === addCategoryType}
+        size={"small"}
+        setModalType={setModalType}
+      >
+        <div className={styles.formContainer}>
+          <FormikForm
+            formTitle={"Ajouter une catégorie"}
+            initialValues={addCategoryInitialValues}
+            validationSchema={addCategoryValidationSchema}
+            handleSubmit={addCategory}
+            submitBtnText={"Ajouter"}
             setModalType={setModalType}
             updateData={refreshLowerStockProducts}
           />
