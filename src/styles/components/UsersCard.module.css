@@ -33,6 +33,16 @@
   overflow: scroll;
 }
 
+.card::-webkit-scrollbar {
+  width: 0.4rem;
+  background-color: var(--secondary);
+}
+
+.card::-webkit-scrollbar-thumb {
+  background-color: var(--black);
+  border-radius: 0.2rem;
+}
+
 .unit {
   display: flex;
   align-items: center;

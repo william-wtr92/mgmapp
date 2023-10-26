@@ -6,7 +6,6 @@
   justify-content: flex-start;
   gap: 2rem;
   border-radius: 15px;
-  
 }
 
 .title {
@@ -22,6 +21,7 @@
   width: 80%;
   background-color: var(--secondary);
   border-radius: 1rem;
+  height: fit-content;
 }
 
 .rightContainer {
