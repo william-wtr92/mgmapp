@@ -70,6 +70,31 @@ const handler = mw({
       res.send({ result: true })
     },
   ],
+  GET: [
+    auth(),
+    validate({
+      query: {
+        userId: numberValidator.required(),
+      },
+    }),
+    async ({
+      locals: {
+        query: { userId },
+      },
+      res,
+    }: patchUserMw) => {
+      const user = await UserModel.query()
+        .findOne({ id: userId })
+        .withGraphFetched("roleData")
+        .select("email", "firstname", "lastname", "createdAt")
+
+      if (!user) {
+        throw new NotFoundError()
+      }
+
+      res.send({ result: user })
+    },
+  ],
 })
 
 export default handler
