@@ -31,15 +31,6 @@ const Home = () => {
   const productHistoric =
     !productHistoricLoading && !productHistoricError && productHistoricData
 
-  const {
-    lowerStockProductsData,
-    lowerStockProductsError,
-    lowerStockProductsIsLoading,
-  } = useGetLowerStockProducts()
-  const lowerStockProducts =
-    !lowerStockProductsIsLoading && lowerStockProductsData
-
-
   return (
     <main className={styles.container}>
       <div className={styles.leftContainer}>
