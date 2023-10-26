@@ -157,7 +157,7 @@ const NavBar = () => {
 
       <Modal
         opened={modalType === addCategoryType}
-        size={"small"}
+        size={"medium"}
         setModalType={setModalType}
       >
         <div className={styles.formContainer}>

@@ -53,7 +53,7 @@ const ProductDetail = (props: any) => {
       stock: productDetail.stock,
       categoryId: productDetail.categoryId
     })
-  }, [productDetail]);
+  }, [productDetail, productDetailLoading]);
 
   const handleUpdateProduct = useCallback((values: any) => {
     updateProduct(productDetail.id, values)
@@ -116,28 +116,31 @@ const ProductDetail = (props: any) => {
         </div>
       </div>
 
-      <Modal
-        opened={modalType === updateProductType}
-        size={"medium"}
-        setModalType={setModalType}
-      >
-        <div className={styles.formContainer}>
-          <FormikForm
-            formTitle={"Ajouter un produit"}
-            initialValues={{
-              name: productDetail.name,
-              desc: productDetail.desc,
-              stock: productDetail.stock,
-              categoryId: productDetail.categoryId
-            }}
-            validationSchema={addProductValidationSchema}
-            handleSubmit={handleUpdateProduct}
-            submitBtnText={"Mettre à jour"}
-            setModalType={setModalType}
-            updateData={refreshProductDetail}
-          />
-        </div>
-      </Modal>
+      {productDetail && (
+        <Modal
+          opened={modalType === updateProductType}
+          size={"medium"}
+          setModalType={setModalType}
+        >
+          <div className={styles.formContainer}>
+            <FormikForm
+              formTitle={"Ajouter un produit"}
+              initialValues={{
+                name: productDetail.name,
+                desc: productDetail.desc,
+                stock: productDetail.stock,
+                categoryId: productDetail.categoryId
+              }}
+              validationSchema={addProductValidationSchema}
+              handleSubmit={handleUpdateProduct}
+              submitBtnText={"Mettre à jour"}
+              setModalType={setModalType}
+              updateData={refreshProductDetail}
+            />
+          </div>
+        </Modal>
+      )}
+
 
     </main>
   )

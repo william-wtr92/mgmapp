@@ -16,7 +16,7 @@
 
 /* Styles for open / closed menu state */
 .open {
-  width: 200px;
+  width: 200px !important;
 }
 
 .closed {

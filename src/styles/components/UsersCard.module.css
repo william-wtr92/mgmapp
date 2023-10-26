@@ -36,11 +36,13 @@
 .card::-webkit-scrollbar {
   width: 0.4rem;
   background-color: var(--secondary);
+  border-radius: 10px;
 }
 
 .card::-webkit-scrollbar-thumb {
   background-color: var(--black);
   border-radius: 0.2rem;
+  border-radius: 10px;
 }
 
 .unit {

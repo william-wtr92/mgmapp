@@ -68,6 +68,8 @@
   font-size: 0.8rem;
   resize: none;
   min-height: 100px;
+  font-family: Chivo;
+  font-weight: 200;
 }
 
 .textarea:focus {
