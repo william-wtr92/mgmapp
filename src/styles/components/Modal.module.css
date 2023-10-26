@@ -5,17 +5,18 @@
   top: 0;
   left: 0;
   pointer-events: none;
+  z-index: 9999;
 }
 
 .modal {
   margin: 0 auto;
   padding: 1.25rem;
   border-radius: 1rem;
-  transition: 800ms cubic-bezier(.95, .6, .26, .83);
+  transition: 800ms cubic-bezier(0.95, 0.6, 0.26, 0.83);
   background-color: var(--secondary);
   -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.73);
   box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.73);
-  
+  z-index: 9999;
 }
 
 .opened {
