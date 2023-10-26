@@ -2,9 +2,22 @@ import styles from "@/styles/components/UsersCard.module.css"
 import Image from "next/image"
 import { NavLink } from "../utils/NavLink"
 import Button from "../Button"
+import { parseCookies } from "nookies"
+import parseSession from "@/services/helper/parseSession"
+import useGetUserDetail from "@/services/users/getUserById"
 
 const UsersCard = (props: any) => {
   const { users } = props
+
+  const cookies = parseCookies()
+  const jwtToken = cookies["token"]
+  const session = parseSession(jwtToken)
+  const userId = session ? session.user.id : null
+
+  const { userDetailData, userDetailError, userDetailLoading } = useGetUserDetail(userId);
+  const user = (!userDetailError && !userDetailLoading) ? userDetailData : {};
+
+  console.log(user);
 
   return (
     <div className={styles.container}>
@@ -34,10 +47,12 @@ const UsersCard = (props: any) => {
           ))}
 
         <div className={styles.add}>
-          <Button
-            label={"Ajouter un membre"}
-            onClickAction={() => console.log("test")}
-          />
+          {user?.roleData?.right === "manager" && (
+            <Button
+              label={"Ajouter un membre"}
+              onClickAction={() => console.log("test")}
+            />
+          )}
         </div>
       </div>
     </div>

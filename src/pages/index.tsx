@@ -1,16 +1,20 @@
 import HistoricProducts from "@/components/ui/HistoricProducts"
 import SearchBar from "@/components/ui/SearchBar"
 import UsersCard from "@/components/ui/UsersCard"
+import parseSession from "@/services/helper/parseSession"
 import useGetLowerStockProducts from "@/services/hooks/useGetLowerStockProducts"
 import useGetHistoricProducts from "@/services/products/getLastProducts"
 import useGetSearchProduct from "@/services/products/searchProduct"
+import useGetUserDetail from "@/services/users/getUserById"
 import useGetUsers from "@/services/users/getUsers"
 import styles from "@/styles/pages/Home.module.css"
 import { CheckBadgeIcon, ExclamationCircleIcon, ExclamationTriangleIcon, ShoppingBagIcon } from "@heroicons/react/24/outline"
 import classNames from "classnames"
+import { parseCookies } from "nookies"
 import { useCallback, useState } from "react"
 
 const Home = () => {
+
   const { userData, userError, userLoading } = useGetUsers()
   const { productHistoricData, productHistoricError, productHistoricLoading } =
     useGetHistoricProducts()
