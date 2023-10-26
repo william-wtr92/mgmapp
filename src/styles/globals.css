@@ -13,12 +13,12 @@ html {
   --navtitle: #405da0;
   --hover: #2a90f1;
   --hover-lol: black;
-  --hover-gradient: linear-gradient(90deg, #5667FF 0%, #2396EF 100%);
-  --dark-background: #3054AA;
+  --hover-gradient: linear-gradient(90deg, #5667ff 0%, #2396ef 100%);
+  --dark-background: #3054aa;
   --grey: rgb(225, 225, 225);
   --black: black;
   --error: rgb(176, 0, 0);
-  --warning: #FF8800;
+  --warning: #ff8800;
   --success: rgb(49, 238, 90);
   --button: #ccdbfd;
   --point: rgb(49, 238, 90);
@@ -35,3 +35,7 @@ p {
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
