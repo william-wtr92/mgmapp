@@ -141,7 +141,7 @@ const NavBar = () => {
               {""}
             </NavLink>
 
-            {user.roleData.right === "manager" && (
+            {user?.roleData?.right === "manager" && (
               <>
                 <NavbarBtn
                   Icon={FolderPlusIcon}

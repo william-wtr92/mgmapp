@@ -96,7 +96,7 @@ const ProductDetail = (props: any) => {
         </div>
       </div>
 
-      {user.roleData.right === "manager" && (
+      {user?.roleData?.right === "manager" && (
         <div className={styles.rightContainer}>
           <h2 className={styles.title}>Actions</h2>
 
