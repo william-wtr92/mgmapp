@@ -16,6 +16,7 @@ import {
   ModalType,
   addCategoryType,
   addProductType,
+  updateUserType,
 } from "@/types/modal/ModalType"
 import FormikForm from "../utils/FormikForm"
 import Modal from "./Modal"
@@ -37,26 +38,38 @@ import addCategory from "@/services/category/addCategory"
 import useGetHistoricProducts from "@/services/products/getLastProducts"
 import useGetAllCategories from "@/services/category/allCategory"
 import useGetProductAddByDate from "@/services/products/productAddByDate"
+import useGetUserDetail from "@/services/users/getUserById"
+import { updateUserValidationSchema } from "@/types/user/InitialValues"
+import updateUser from "@/services/users/updateUser"
+import useGetUsers from "@/services/users/getUsers"
 
 const NavBar = () => {
+  const router = useRouter()
+
   const [modalType, setModalType] = useState<ModalType>("")
   const [submitBtnText, setSubmitBtnText] = useState<any>("")
   const [open, setOpen] = useState<boolean>(true)
-  const router = useRouter()
 
   const cookies = parseCookies()
   const jwtToken = cookies["token"]
   const session = parseSession(jwtToken)
   const userId = session ? session.user.id : null
 
+  useEffect(() => {
+    setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
+  }, [modalType])
+  const {  
+    userDetailData,
+    userDetailLoading,
+    refreshUserDetail
+  } = useGetUserDetail(userId)
+  const user = !userDetailLoading && userDetailData
+
   const { refreshLowerStockProducts } = useGetLowerStockProducts()
   const { refreshProductHistoric } = useGetHistoricProducts()
   const { refreshCategories } = useGetAllCategories()
   const { refreshProductAddByDate } = useGetProductAddByDate()
-
-  useEffect(() => {
-    setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
-  }, [modalType])
+  const { updateUsers } = useGetUsers()
 
   const handleOpen = useCallback(() => {
     setOpen(!open)
@@ -65,13 +78,26 @@ const NavBar = () => {
   const handleClearCookies = useCallback(() => {
     document.cookie = "token" + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;"
     router.push("/login")
-  }, [])
+  }, [router])
+
+  const handleUpdateUser = useCallback((values: any): any => {
+    updateUser(userId, values)
+  }, [userId])
 
   const refreshDatas = useCallback(() => {
     refreshLowerStockProducts()
     refreshProductHistoric()
     refreshProductAddByDate()
-  }, [])
+  },[refreshLowerStockProducts, refreshProductHistoric, refreshProductAddByDate])
+
+  const refreshUserDatas = useCallback(() => {
+    refreshUserDetail()
+    updateUsers()
+  }, [refreshUserDetail, updateUsers])
+
+  useEffect(() => {
+    setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
+  }, [modalType])
 
   return (
     <>
@@ -105,7 +131,8 @@ const NavBar = () => {
 
           <div className={styles.infos}>
             <p className={styles.text}>Hello 👋</p>
-            <p className={styles.text}>William Lim</p>
+            <p className={styles.text}>{user.firstname}</p>
+            <p className={styles.text}>{user.lastname}</p>
           </div>
         </div>
 
@@ -135,9 +162,11 @@ const NavBar = () => {
           <h1 className={styles.groupTitle}>Paramètres</h1>
 
           <div className={styles.links}>
-            <NavLink Icon={UserIcon} href={`/user/${userId}`} label={"Profil"}>
-              {""}
-            </NavLink>
+            <NavbarBtn
+              Icon={UserIcon}
+              label={"Profil"}
+              onClickAction={() => setModalType(updateUserType)}
+            />
 
             <NavbarBtn
               Icon={ArrowLeftOnRectangleIcon}
@@ -183,6 +212,31 @@ const NavBar = () => {
           />
         </div>
       </Modal>
+
+      {userDetailData && (
+        <Modal
+          opened={modalType === updateUserType}
+          size={"medium"}
+          setModalType={setModalType}
+        >
+          <div className={styles.formContainer}>
+            <FormikForm
+              formTitle={"Mettre à jour son profil"}
+              initialValues={{
+                email: userDetailData.email,
+                firstname: userDetailData.firstname,
+                lastname: userDetailData.lastname
+              }}
+              validationSchema={updateUserValidationSchema}
+              handleSubmit={handleUpdateUser}
+              submitBtnText={"Mettre à jour"}
+              setModalType={setModalType}
+              updateData={refreshUserDatas}
+            />
+          </div>
+        </Modal>
+      )}
+
     </>
   )
 }

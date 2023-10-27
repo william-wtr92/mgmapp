@@ -76,6 +76,9 @@
   margin: 0;
   transition-duration: 200ms;
   text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 85px;
 }
 
 .text:hover {

@@ -2,7 +2,7 @@ import useGetDetailProduct from "@/services/products/getProductDetail"
 import styles from "@/styles/pages/ProductDetail.module.css"
 import moment from "moment"
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import { useRouter } from "next/router"
 import deleteProduct from "@/services/products/deleteProduct"
 import FormikForm from "@/components/utils/FormikForm"
@@ -27,9 +27,6 @@ const ProductDetail = (props: any) => {
 
   const [modalType, setModalType] = useState<ModalType>("")
 
-  // eslint-disable-next-line no-unused-vars
-  const [initialValues, setInitialValues] = useState<any>({})
-
   const {
     productDetailData,
     productDetailError,
@@ -42,27 +39,11 @@ const ProductDetail = (props: any) => {
   const handleDelete = useCallback((productId: number) => {
     deleteProduct(productId)
     router.push("/")
-  }, [])
+  }, [router])
 
-  useEffect(() => {
-    if (!productDetail) {
-      return
-    }
-
-    setInitialValues({
-      name: productDetail.name,
-      desc: productDetail.desc,
-      stock: productDetail.stock,
-      categoryId: productDetail.categoryId,
-    })
-  }, [productDetail, productDetailLoading])
-
-  const handleUpdateProduct = useCallback(
-    (values: any): any => {
-      updateProduct(productDetail.id, values)
-    },
-    [productDetail],
-  )
+  const handleUpdateProduct = useCallback((values: any): any => {
+    updateProduct(productDetail.id, values)
+  }, [productDetail])
 
   return (
     <main className={styles.container}>

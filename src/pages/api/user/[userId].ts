@@ -44,7 +44,7 @@ const handler = mw({
         email: stringValidator.required(),
         firstname: stringValidator.required(),
         lastname: stringValidator.required(),
-        roleId: numberValidator.required(),
+        roleId: numberValidator,
       },
     }),
     async ({

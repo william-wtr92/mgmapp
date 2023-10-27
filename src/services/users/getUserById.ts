@@ -16,12 +16,13 @@ return data.result
 
 const useGetUserDetail = (userId: number) => {
   const url = `http://localhost:3000/api/user/${userId}`
-  const { data, error, isLoading } = useSWR(url, fetcher)
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher)
 
   return {
     userDetailData: data,
     userDetailError: error,
     userDetailLoading: isLoading,
+    refreshUserDetail: mutate
   }
 }
 
