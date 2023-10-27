@@ -10,6 +10,9 @@ import Modal from "@/components/ui/Modal"
 import { ModalType, updateProductType } from "@/types/modal/ModalType"
 import { addProductValidationSchema } from "@/types/product/InitialValues"
 import updateProduct from "@/services/products/updateProduct"
+import { parseCookies } from "nookies"
+import parseSession from "@/services/helper/parseSession"
+import useGetUserDetail from "@/services/users/getUserById"
 
 export const getServerSideProps = async (context: any) => {
   const { productId } = context.params
@@ -26,6 +29,17 @@ const ProductDetail = (props: any) => {
   const router = useRouter()
 
   const [modalType, setModalType] = useState<ModalType>("")
+
+  const cookies = parseCookies()
+  const jwtToken = cookies["token"]
+  const session = parseSession(jwtToken)
+  const userId = session ? session.user.id : null
+
+  const {  
+    userDetailData,
+    userDetailLoading,
+  } = useGetUserDetail(userId)
+  const user = !userDetailLoading && userDetailData
 
   const {
     productDetailData,
@@ -82,27 +96,30 @@ const ProductDetail = (props: any) => {
         </div>
       </div>
 
-      <div className={styles.rightContainer}>
-        <h2 className={styles.title}>Actions</h2>
+      {user.roleData.right === "manager" && (
+        <div className={styles.rightContainer}>
+          <h2 className={styles.title}>Actions</h2>
 
-        <div className={styles.iconsContainer}>
-          <div
-            className={styles.iconsUnit}
-            onClick={() => setModalType(updateProductType)}
-          >
-            <PencilSquareIcon className={styles.icons} />
-            <label className={styles.labelsIcon}>Modifier</label>
-          </div>
+          <div className={styles.iconsContainer}>
+            <div
+              className={styles.iconsUnit}
+              onClick={() => setModalType(updateProductType)}
+            >
+              <PencilSquareIcon className={styles.icons} />
+              <label className={styles.labelsIcon}>Modifier</label>
+            </div>
 
-          <div
-            className={styles.iconsUnit}
-            onClick={() => handleDelete(productDetailData.id)}
-          >
-            <TrashIcon className={styles.icons} />
-            <label className={styles.labelsIcon}>Supprimer</label>
+            <div
+              className={styles.iconsUnit}
+              onClick={() => handleDelete(productDetailData.id)}
+            >
+              <TrashIcon className={styles.icons} />
+              <label className={styles.labelsIcon}>Supprimer</label>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
 
       {productDetail && (
         <Modal

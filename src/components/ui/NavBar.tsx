@@ -55,9 +55,6 @@ const NavBar = () => {
   const session = parseSession(jwtToken)
   const userId = session ? session.user.id : null
 
-  useEffect(() => {
-    setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
-  }, [modalType])
   const {  
     userDetailData,
     userDetailLoading,
@@ -144,17 +141,22 @@ const NavBar = () => {
               {""}
             </NavLink>
 
-            <NavbarBtn
-              Icon={FolderPlusIcon}
-              label={"Produit"}
-              onClickAction={() => setModalType(addProductType)}
-            />
+            {user.roleData.right === "manager" && (
+              <>
+                <NavbarBtn
+                  Icon={FolderPlusIcon}
+                  label={"Produit"}
+                  onClickAction={() => setModalType(addProductType)}
+                />
 
-            <NavbarBtn
-              Icon={FolderPlusIcon}
-              label={"Catégorie"}
-              onClickAction={() => setModalType(addCategoryType)}
-            />
+                <NavbarBtn
+                  Icon={FolderPlusIcon}
+                  label={"Catégorie"}
+                  onClickAction={() => setModalType(addCategoryType)}
+                />
+              </>
+            )}
+
           </div>
         </div>
 
