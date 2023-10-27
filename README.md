@@ -61,5 +61,5 @@ SECURITY_JWT_SECRET=
 - Clone le projet;
 - Executer la commande `npm install` pour installer les dépendances;
 - Configurez le fichier .env;
-- Executer la commande `npx knex migrate:latest` pour creer vos tables;
+- Executer la commande `npm run create-db` pour creer vos tables et les remplirs avec les données du seed;
 - Executer la commande `npm run dev` pour lancer le site;
