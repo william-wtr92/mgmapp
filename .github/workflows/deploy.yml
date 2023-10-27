@@ -8,6 +8,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      sonarqube:
+        image: sonarqube:latest
+        ports:
+          - 9000:9000
 
     steps:
       - name: Checkout code
@@ -22,7 +27,18 @@ jobs:
       - name: Linting project
         run: npm run lint
 
-      - name: Docker Compose Build
+      - name: Run SonarQube analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          wget --retry-connrefused --waitretry=5 --timeout=20 --tries=10 http://localhost:9000/api/system/status
+          sonar-scanner \
+            -Dsonar.projectKey=mgmapp \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.login=$SONAR_TOKEN
+
+       - name: Docker Compose Build
         run: docker-compose -f docker-compose.yml build
         env:
           DB_CONNECTION_HOST: ${{ secrets.DB_CONNECTION_HOST }}

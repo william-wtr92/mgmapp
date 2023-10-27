@@ -21,3 +21,7 @@ services:
       POSTGRES_DB: mgmapp
     ports:
       - "5432:5432"
+  sonarqube:
+    image: sonarqube:latest
+    ports:
+      - "9000:9000"
