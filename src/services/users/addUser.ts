@@ -1,12 +1,12 @@
-import getApiClient from "../getApiClient";
+import getApiClient from "../getApiClient"
 
-
-const addUser = async(values: any): Promise<[null, boolean] | [any]> => {
-  const url = "http://localhost:3000/api/user/add";
-  const reqInstance = getApiClient(null);
+const addUser = async (values: any): Promise<[null, boolean] | [any]> => {
+  const url = "http://localhost:3000/api/user/add"
+  const reqInstance = getApiClient(null)
 
   try {
-    const { data } = await reqInstance.post(url, values);
+    // eslint-disable-next-line no-unused-vars
+    const { data } = await reqInstance.post(url, values)
 
     return [null, true]
   } catch (error) {
@@ -14,4 +14,4 @@ const addUser = async(values: any): Promise<[null, boolean] | [any]> => {
   }
 }
 
-export default addUser;
+export default addUser

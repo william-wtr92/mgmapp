@@ -6,7 +6,9 @@ const fetcher = async (url: string) => {
 
   try {
     const { data } = await reqInstance.get(url)
-    return data.result
+
+    
+return data.result
   } catch (error) {
     return [Array.isArray(error) ? error : [error]]
   }

@@ -4,17 +4,16 @@ import FormikField from "../FormikField"
 import Button from "../Button"
 import styles from "@/styles/components/FormikForm.module.css"
 import { ModalType } from "@/types/modal/ModalType"
-import useGetUsers from "@/services/users/getUsers"
-import { KeyedMutator } from "swr"
 
 type Props = {
   formTitle: string
   initialValues: any
   validationSchema: any
-  handleSubmit: (values: any) => Promise<[null, boolean] | [any]>;
+  // eslint-disable-next-line no-unused-vars
+  handleSubmit: (values: any) => Promise<[null, boolean] | [any]>
   submitBtnText: string
-  setModalType: Dispatch<SetStateAction<ModalType>>,
-  updateData: () => void;
+  setModalType: Dispatch<SetStateAction<ModalType>>
+  updateData: () => void
 }
 
 const FormikForm = (props: Props) => {
@@ -25,15 +24,14 @@ const FormikForm = (props: Props) => {
     handleSubmit,
     submitBtnText,
     setModalType,
-    updateData
+    updateData,
   } = props
-
 
   const handleSubmitActions = async (values: any, handleReset: any) => {
     await handleSubmit(values)
     setModalType("")
-    updateData();
-    handleReset();
+    updateData()
+    handleReset()
   }
 
   return (
@@ -43,6 +41,7 @@ const FormikForm = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
+        // eslint-disable-next-line no-console
         onSubmit={() => console.log("datas submitted")}
       >
         {({ dirty, isValid, values, handleReset }) => {

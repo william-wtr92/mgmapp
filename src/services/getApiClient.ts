@@ -2,7 +2,7 @@ import { parseCookies } from "nookies"
 import Axios from "axios"
 
 const getApiClient = (context: any) => {
-  const { token } = parseCookies(context);
+  const { token } = parseCookies(context)
 
   const reqInstance = Axios.create({
     headers: {
@@ -10,7 +10,7 @@ const getApiClient = (context: any) => {
     }
   })
 
-  return reqInstance;
+  return reqInstance
 }
 
-export default getApiClient;
+export default getApiClient

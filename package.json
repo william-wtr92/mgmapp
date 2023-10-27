@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fix": "next lint --fix"
   },
   "dependencies": {
     "@fontsource/chivo": "^5.0.8",
@@ -24,6 +25,7 @@
     "nookies": "^2.5.2",
     "objection": "^3.1.2",
     "pg": "^8.11.3",
+    "prettier": "^3.0.3",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",

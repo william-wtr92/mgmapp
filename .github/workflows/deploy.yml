@@ -16,6 +16,9 @@ jobs:
       - name: Login to GitHub Packages
         run: echo "${{ secrets.TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
+      - name: Linting project
+        run: npm run lint
+
       - name: Docker Compose Build
         run: docker-compose -f docker-compose.yml build
         env:

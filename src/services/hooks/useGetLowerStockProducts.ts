@@ -1,29 +1,29 @@
-import useSWR from "swr";
-import getApiClient from "../getApiClient";
+import useSWR from "swr"
+import getApiClient from "../getApiClient"
 
 const fetcher = async (url: string) => {
-  const reqInstance = getApiClient(null);
-  
+  const reqInstance = getApiClient(null)
+
   try {
     const { data } = await reqInstance.get(url)
 
-    return data.result;
+    return data.result
   } catch (error) {
-    console.log(error);
+    return [Array.isArray(error) ? error : [error]]
   }
 }
 
 const useGetLowerStockProducts = () => {
-  const url = 'http://localhost:3000/api/product/stock'
+  const url = "http://localhost:3000/api/product/stock"
 
-  const { data, error, isLoading, mutate } = useSWR(url, fetcher);
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher)
 
   return {
     lowerStockProductsData: data,
     lowerStockProductsError: error,
     lowerStockProductsIsLoading: isLoading,
-    refreshLowerStockProducts: mutate
+    refreshLowerStockProducts: mutate,
   }
 }
 
-export default useGetLowerStockProducts;
+export default useGetLowerStockProducts

@@ -6,14 +6,17 @@ import { parseCookies } from "nookies"
 import parseSession from "@/services/helper/parseSession"
 import useGetUserDetail from "@/services/users/getUserById"
 import Modal from "./Modal"
-import { useCallback, useEffect, useState } from "react"
-import { ModalType, addUserType, updateProductType } from "@/types/modal/ModalType"
+import { useState } from "react"
+import { ModalType, addUserType } from "@/types/modal/ModalType"
 import FormikForm from "../utils/FormikForm"
-import { addUserInitialValues, addUserValidationSchema } from "@/types/user/InitialValues"
+import {
+  addUserInitialValues,
+  addUserValidationSchema,
+} from "@/types/user/InitialValues"
 import addUser from "@/services/users/addUser"
 import useGetUsers from "@/services/users/getUsers"
 
-const UsersCard = (props: any) => {
+const UsersCard = () => {
   const cookies = parseCookies()
   const jwtToken = cookies["token"]
   const session = parseSession(jwtToken)
@@ -23,21 +26,18 @@ const UsersCard = (props: any) => {
 
   const {
     userData,
-    userError,
+
     userLoading,
-    updateUsers
+    updateUsers,
   } = useGetUsers()
   const users = !userLoading ? userData : []
 
-  const {
-    userDetailData,
-    userDetailError,
-    userDetailLoading
-  } = useGetUserDetail(userId);
-  const user = (!userDetailError && !userDetailLoading) ? userDetailData : {};
+  const { userDetailData, userDetailError, userDetailLoading } =
+    useGetUserDetail(userId)
+  const user = !userDetailError && !userDetailLoading ? userDetailData : {}
 
   const refreshData = () => {
-    updateUsers();
+    updateUsers()
   }
 
   return (

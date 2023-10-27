@@ -1,5 +1,4 @@
 import CategoryModel from "@/api/db/models/CategoryModel"
-import { InvalidArgumentError } from "@/api/error"
 import auth from "@/api/middelwares/auth"
 import validate from "@/api/middelwares/validate"
 import mw from "@/api/mw"
@@ -11,25 +10,27 @@ const handler = mw({
     auth(),
     validate({
       body: {
-        name: stringValidator.required()
-      }
+        name: stringValidator.required(),
+      },
     }),
     async ({
       locals: {
-        body: { name }
+        body: { name },
       },
-      res
+      res,
     }: addCategoryMw) => {
       const checkCategory = await CategoryModel.query().findOne({ name })
 
       if (checkCategory !== undefined) {
-        res.status(500).send({ message: "Category with this name already exists" })
+        res
+          .status(500)
+          .send({ message: "Category with this name already exists" })
 
-        return;
+        return
       }
 
-      const addedCategory = await CategoryModel.query().insert({ 
-        name
+      const addedCategory = await CategoryModel.query().insert({
+        name,
       })
 
       res.send({ result: addedCategory })

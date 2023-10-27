@@ -1,12 +1,14 @@
+/* eslint-disable no-unused-vars */
 import useGetSearchProduct from "@/services/products/searchProduct"
 import styles from "@/styles/components/SearchBar.module.css"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
 import { useRouter } from "next/router"
+import { val } from "objection"
 import { useCallback, useEffect, useState } from "react"
 
 type Props = {
-  defaultValue?: string;
-  setActiveSearch?: (str: string) => void;
+  defaultValue?: string
+  setActiveSearch?: (str: string) => void
 }
 
 const SearchBar = (props: Props) => {
@@ -16,22 +18,26 @@ const SearchBar = (props: Props) => {
 
   const handleChange = useCallback((e: any) => {
     setValue(e.target.value)
-  }, [value])
+  }, [])
 
   const handleSubmit = useCallback(() => {
-    setActiveSearch ? setActiveSearch(value) : router.push(`/product/search?search=${value}`)
-  }, [value]);
+    setActiveSearch
+      ? setActiveSearch(value)
+      : router.push(`/product/search?search=${value}`)
+  }, [router, setActiveSearch, value])
 
   useEffect(() => {
     const searchBar = document.querySelector("#productSearchBar")
 
     const handleKeyDown = (event: any) => {
       if (event.key === "Enter") {
-        handleSubmit();
+        handleSubmit()
       }
     }
 
-    if (searchBar === null) return;
+    if (searchBar === null) {
+      return
+    }
 
     searchBar.addEventListener("keydown", handleKeyDown)
 
@@ -43,7 +49,7 @@ const SearchBar = (props: Props) => {
   return (
     <div className={styles.container}>
       <MagnifyingGlassIcon className={styles.icon} />
-      
+
       <input
         id="productSearchBar"
         type="search"

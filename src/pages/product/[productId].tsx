@@ -8,8 +8,7 @@ import deleteProduct from "@/services/products/deleteProduct"
 import FormikForm from "@/components/utils/FormikForm"
 import Modal from "@/components/ui/Modal"
 import { ModalType, updateProductType } from "@/types/modal/ModalType"
-import { addProductInitialValues, addProductValidationSchema } from "@/types/product/InitialValues"
-import addProduct from "@/services/products/addProduct"
+import { addProductValidationSchema } from "@/types/product/InitialValues"
 import updateProduct from "@/services/products/updateProduct"
 
 export const getServerSideProps = async (context: any) => {
@@ -26,18 +25,19 @@ const ProductDetail = (props: any) => {
   const { productId } = props
   const router = useRouter()
 
-  const [modalType, setModalType] = useState<ModalType>("");
-  const [initialValues, setInitialValues] = useState<any>({});
-  const [submitBtnText, setSubmitBtnText] = useState<any>("");
-  const [open, setOpen] = useState<boolean>(true);
+  const [modalType, setModalType] = useState<ModalType>("")
+
+  // eslint-disable-next-line no-unused-vars
+  const [initialValues, setInitialValues] = useState<any>({})
 
   const {
     productDetailData,
     productDetailError,
     productDetailLoading,
-    refreshProductDetail
-  } = useGetDetailProduct(productId);
-  const productDetail = (!productDetailError && !productDetailLoading) && productDetailData;
+    refreshProductDetail,
+  } = useGetDetailProduct(productId)
+  const productDetail =
+    !productDetailError && !productDetailLoading && productDetailData
 
   const handleDelete = useCallback((productId: number) => {
     deleteProduct(productId)
@@ -45,23 +45,27 @@ const ProductDetail = (props: any) => {
   }, [])
 
   useEffect(() => {
-    if (!productDetail) return;
+    if (!productDetail) {
+      return
+    }
 
     setInitialValues({
       name: productDetail.name,
       desc: productDetail.desc,
       stock: productDetail.stock,
-      categoryId: productDetail.categoryId
+      categoryId: productDetail.categoryId,
     })
-  }, [productDetail, productDetailLoading]);
+  }, [productDetail, productDetailLoading])
 
-  const handleUpdateProduct = useCallback((values: any): any => {
-    updateProduct(productDetail.id, values)
-  }, [productDetail]);
+  const handleUpdateProduct = useCallback(
+    (values: any): any => {
+      updateProduct(productDetail.id, values)
+    },
+    [productDetail],
+  )
 
   return (
     <main className={styles.container}>
-
       <div className={styles.leftContainer}>
         <h1 className={styles.title}>Détail du produit</h1>
 
@@ -101,7 +105,10 @@ const ProductDetail = (props: any) => {
         <h2 className={styles.title}>Actions</h2>
 
         <div className={styles.iconsContainer}>
-          <div className={styles.iconsUnit} onClick={() => setModalType(updateProductType)}>
+          <div
+            className={styles.iconsUnit}
+            onClick={() => setModalType(updateProductType)}
+          >
             <PencilSquareIcon className={styles.icons} />
             <label className={styles.labelsIcon}>Modifier</label>
           </div>
@@ -129,7 +136,7 @@ const ProductDetail = (props: any) => {
                 name: productDetail.name,
                 desc: productDetail.desc,
                 stock: productDetail.stock,
-                categoryId: productDetail.categoryId
+                categoryId: productDetail.categoryId,
               }}
               validationSchema={addProductValidationSchema}
               handleSubmit={handleUpdateProduct}
@@ -140,8 +147,6 @@ const ProductDetail = (props: any) => {
           </div>
         </Modal>
       )}
-
-
     </main>
   )
 }

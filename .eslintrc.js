@@ -1,12 +1,7 @@
 module.exports = {
   root: true,
-  extends: [
-    "eslint:recommended",
-    "prettier",
-    "next",
-    "plugin:react/recommended",
-  ],
-  plugins: ["react", "react-hooks", "testing-library"],
+  extends: ["eslint:recommended", "next", "plugin:react/recommended"],
+  plugins: ["react", "react-hooks"],
   env: {
     es2022: true,
     node: true,

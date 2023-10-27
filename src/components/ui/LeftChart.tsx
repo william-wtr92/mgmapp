@@ -1,6 +1,5 @@
 import useGetAllCategories from "@/services/category/allCategory"
 import useGetStockByCat from "@/services/category/stockByCat"
-import useGetHistoricAllProducts from "@/services/products/allHistoric"
 import useGetProductAddByDate from "@/services/products/productAddByDate"
 import styles from "@/styles/components/LeftChart.module.css"
 import {
@@ -23,7 +22,7 @@ Chart.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 )
 
 const options = {
@@ -45,26 +44,14 @@ interface ProductByCatType {
 }
 
 const LeftChart = () => {
-  const {
-    allCategoriesData,
-    allCategoriesError,
-    allCategoriesLoading
-  } = useGetAllCategories()
+  const { allCategoriesData, allCategoriesLoading } = useGetAllCategories()
 
-  const {
-    stockByCatData,
-    stockByCatError,
-    stockByCatLoading
-  } = useGetStockByCat()
+  const { stockByCatData, stockByCatLoading } = useGetStockByCat()
 
-  const {
-    productAddByDateData,
-    productAddByDateError,
-    productAddByDateLoading,
-  } = useGetProductAddByDate()
+  const { productAddByDateData } = useGetProductAddByDate()
 
   const [productByCat, setProductByCat] = useState<ProductByCatType | null>(
-    null
+    null,
   )
 
   const [productsByDayOfWeek, setProductsByDayOfWeek] = useState<number[]>([
@@ -131,8 +118,8 @@ const LeftChart = () => {
         <div className={styles.stats}>
           <div className={styles.graphDog}>
             <Doughnut data={productByCat as any} options={options as any} />
-            </div>
-            
+          </div>
+
           <div className={styles.graphBar}>
             <Bar data={historicData as any} options={options as any} />
           </div>

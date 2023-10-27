@@ -4,7 +4,8 @@ import moment from "moment"
 import Image from "next/image"
 
 const allUser = () => {
-  const { userData, userError, userLoading } = useGetUsers()
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { userData } = useGetUsers()
 
   return (
     <div className={styles.container}>

@@ -1,6 +1,6 @@
-import React, { useCallback } from "react"
+import React from "react"
 import styles from "@/styles/pages/Login.module.css"
-import { Formik, Form, Field } from "formik"
+import { Formik, Form } from "formik"
 import { LoginInitialValues } from "@/types/login/LoginInitialValues"
 import * as yup from "yup"
 import FormikField from "@/components/FormikField"
@@ -62,11 +62,12 @@ const Login = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({ dirty, errors, values }) => {
+            {({ errors }) => {
               return (
                 <Form className={styles.form}>
                   <div className={styles.formErrors}>
                     {errors &&
+                      // eslint-disable-next-line no-unused-vars
                       Object.entries(errors).map(([_, value], index) => (
                         <span key={index}>{value}</span>
                       ))}
@@ -88,6 +89,7 @@ const Login = () => {
 
                   <Button
                     label={"Login"}
+                    // eslint-disable-next-line no-console
                     onClickAction={() => console.log("datas sent !")}
                   />
                 </Form>

@@ -5,17 +5,19 @@ import { useRouter } from "next/router"
 import { useCallback } from "react"
 
 const allHsitoric = () => {
-  const {
-    productHistoricAllData,
-    productHistoricAllError,
-    productHistoricAllLoading,
-  } = useGetHistoricAllProducts()
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { productHistoricAllData } = useGetHistoricAllProducts()
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter()
 
-  const handleRedirect = useCallback((productId: number) => {
-    router.push(`/product/${productId}`)
-  }, [])
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const handleRedirect = useCallback(
+    (productId: number) => {
+      router.push(`/product/${productId}`)
+    },
+    [router],
+  )
 
   return (
     <div className={styles.container}>

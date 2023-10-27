@@ -7,16 +7,17 @@ const handler = mw({
   GET: [
     auth(),
     async ({ res }: searchProductMw) => {
-      const allProducts = await ProductModel.query().withGraphFetched(
-        "category"
-      )
+      const allProducts =
+        await ProductModel.query().withGraphFetched("category")
       const countProductByCategory: Record<string, number> = {}
 
       allProducts.forEach((product: any) => {
         const categoryName = parseInt(product.category?.id) || "Unknown"
+
         if (!countProductByCategory[categoryName]) {
           countProductByCategory[categoryName] = 0
         }
+
         countProductByCategory[categoryName] += 1
       })
 
@@ -25,7 +26,7 @@ const handler = mw({
           ([categoryId, count]) => ({
             categoryId,
             count,
-          })
+          }),
         ),
       })
     },

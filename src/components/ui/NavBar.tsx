@@ -49,10 +49,10 @@ const NavBar = () => {
   const session = parseSession(jwtToken)
   const userId = session ? session.user.id : null
 
-  const { refreshLowerStockProducts } = useGetLowerStockProducts();
-  const { refreshProductHistoric } = useGetHistoricProducts();
-  const { refreshCategories } = useGetAllCategories();
-  const { refreshProductAddByDate } = useGetProductAddByDate();
+  const { refreshLowerStockProducts } = useGetLowerStockProducts()
+  const { refreshProductHistoric } = useGetHistoricProducts()
+  const { refreshCategories } = useGetAllCategories()
+  const { refreshProductAddByDate } = useGetProductAddByDate()
 
   useEffect(() => {
     setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
@@ -71,14 +71,14 @@ const NavBar = () => {
     refreshLowerStockProducts()
     refreshProductHistoric()
     refreshProductAddByDate()
-  }, []);
+  }, [])
 
   return (
     <>
       <div
         className={classNames(
           styles.container,
-          open ? styles.open : styles.closed
+          open ? styles.open : styles.closed,
         )}
       >
         {open ? (

@@ -4,7 +4,6 @@ import SearchBar from "@/components/ui/SearchBar"
 import UsersCard from "@/components/ui/UsersCard"
 import useGetLowerStockProducts from "@/services/hooks/useGetLowerStockProducts"
 import useGetHistoricProducts from "@/services/products/getLastProducts"
-import useGetUsers from "@/services/users/getUsers"
 import styles from "@/styles/pages/Home.module.css"
 import {
   CheckBadgeIcon,
@@ -16,21 +15,20 @@ import classNames from "classnames"
 import { useRouter } from "next/router"
 
 const Home = () => {
-  const router = useRouter();
-    
-  const {
-    lowerStockProductsData,
-    lowerStockProductsError,
-    lowerStockProductsIsLoading,
-  } = useGetLowerStockProducts();
-  const lowerStockProducts = !lowerStockProductsIsLoading && lowerStockProductsData;
+  const router = useRouter()
 
   const {
-    productHistoricData,
-    productHistoricError,
-    productHistoricLoading
-  } = useGetHistoricProducts()
-  const productHistoric = !productHistoricLoading && !productHistoricError && productHistoricData
+    lowerStockProductsData,
+
+    lowerStockProductsIsLoading,
+  } = useGetLowerStockProducts()
+  const lowerStockProducts =
+    !lowerStockProductsIsLoading && lowerStockProductsData
+
+  const { productHistoricData, productHistoricError, productHistoricLoading } =
+    useGetHistoricProducts()
+  const productHistoric =
+    !productHistoricLoading && !productHistoricError && productHistoricData
 
   return (
     <main className={styles.container}>
@@ -54,7 +52,7 @@ const Home = () => {
                       <ExclamationTriangleIcon
                         className={classNames(
                           styles.priorityIcon,
-                          styles.highPriority
+                          styles.highPriority,
                         )}
                       />
                     )}
@@ -63,7 +61,7 @@ const Home = () => {
                       <ExclamationCircleIcon
                         className={classNames(
                           styles.priorityIcon,
-                          styles.mediumPriority
+                          styles.mediumPriority,
                         )}
                       />
                     )}
@@ -72,7 +70,7 @@ const Home = () => {
                       <CheckBadgeIcon
                         className={classNames(
                           styles.priorityIcon,
-                          styles.lowPriority
+                          styles.lowPriority,
                         )}
                       />
                     )}
@@ -101,8 +99,7 @@ const Home = () => {
 
       <div className={styles.rightContainer}>
         <div className={styles.topContainer}>
-          <UsersCard
-          />
+          <UsersCard />
         </div>
 
         <div className={styles.bottomContainer}>

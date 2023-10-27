@@ -22,12 +22,9 @@ const UserDetail = (props: any) => {
   const { userId } = props
   const router = useRouter()
 
-  const { userDetailData, userDetailError, userDetailLoading } =
-    useGetUserDetail(userId)
+  const { userDetailData, userDetailLoading } = useGetUserDetail(userId)
 
-  const user = !userDetailLoading && userDetailData;
-
-
+  const user = !userDetailLoading && userDetailData
 
   const handleReturn = useCallback(() => {
     router.push("/")

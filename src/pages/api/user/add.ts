@@ -1,5 +1,5 @@
 import UserModel from "@/api/db/models/UserModel"
-import { InvalidCredentialsError, NotFoundError } from "@/api/error"
+import { InvalidCredentialsError } from "@/api/error"
 import auth from "@/api/middelwares/auth"
 import checkIsManager from "@/api/middelwares/checkIsManager"
 import validate from "@/api/middelwares/validate"
@@ -49,7 +49,6 @@ const handler = mw({
       }
 
       await UserModel.query().insert(newUser)
-
 
       res.send({ result: true })
     },
