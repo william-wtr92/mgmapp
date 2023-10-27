@@ -30,9 +30,18 @@ services:
     image: sonarqube:latest
     ports:
       - "9000:9000"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
     networks:
       - my_custom_network
 
 networks:
   my_custom_network:
     driver: bridge
+    
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
