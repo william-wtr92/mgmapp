@@ -49,7 +49,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           wget --retry-connrefused --waitretry=5 --timeout=20 --tries=10 http://localhost:9000/api/system/status
-          sonar-scanner \
+          sonar-scanner -X\
             -Dsonar.projectKey=mgmapp \
             -Dsonar.sources=. \
             -Dsonar.host.url=http://localhost:9000 \
