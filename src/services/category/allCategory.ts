@@ -16,12 +16,13 @@ const fetcher = async (url: string) => {
 const useGetAllCategories = () => {
   const url = "http://localhost:3000/api/category/all"
 
-  const { data, error, isLoading } = useSWR(url, fetcher)
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher)
 
   return {
     allCategoriesData: data,
     allCategoriesError: error,
     allCategoriesLoading: isLoading,
+    refreshCategories: mutate
   }
 }
 

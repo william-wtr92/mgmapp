@@ -35,6 +35,8 @@ import {
 } from "@/types/category/InitialValues"
 import addCategory from "@/services/category/addCategory"
 import useGetHistoricProducts from "@/services/products/getLastProducts"
+import useGetAllCategories from "@/services/category/allCategory"
+import useGetProductAddByDate from "@/services/products/productAddByDate"
 
 const NavBar = () => {
   const [modalType, setModalType] = useState<ModalType>("")
@@ -49,6 +51,8 @@ const NavBar = () => {
 
   const { refreshLowerStockProducts } = useGetLowerStockProducts();
   const { refreshProductHistoric } = useGetHistoricProducts();
+  const { refreshCategories } = useGetAllCategories();
+  const { refreshProductAddByDate } = useGetProductAddByDate();
 
   useEffect(() => {
     setSubmitBtnText(getFormValues(modalType)?.submitBtnText)
@@ -66,6 +70,7 @@ const NavBar = () => {
   const refreshDatas = useCallback(() => {
     refreshLowerStockProducts()
     refreshProductHistoric()
+    refreshProductAddByDate()
   }, []);
 
   return (
@@ -174,7 +179,7 @@ const NavBar = () => {
             handleSubmit={addCategory}
             submitBtnText={"Ajouter"}
             setModalType={setModalType}
-            updateData={refreshDatas}
+            updateData={refreshCategories}
           />
         </div>
       </Modal>

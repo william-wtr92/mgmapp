@@ -46,16 +46,16 @@ interface ProductByCatType {
 
 const LeftChart = () => {
   const {
-    productHistoricAllData,
-    productHistoricAllError,
-    productHistoricAllLoading,
-  } = useGetHistoricAllProducts()
+    allCategoriesData,
+    allCategoriesError,
+    allCategoriesLoading
+  } = useGetAllCategories()
 
-  const { allCategoriesData, allCategoriesError, allCategoriesLoading } =
-    useGetAllCategories()
-
-  const { stockByCatData, stockByCatError, stockByCatLoading } =
-    useGetStockByCat()
+  const {
+    stockByCatData,
+    stockByCatError,
+    stockByCatLoading
+  } = useGetStockByCat()
 
   const {
     productAddByDateData,

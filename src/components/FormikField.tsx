@@ -15,19 +15,28 @@ const FormikField = (props: Props) => {
 
   return (
     <Field name={name}> 
-      {(({ field } : {field: any}) => {
+      {(({field, meta} : {field: any, meta: any}) => {
+
         return (
           <label className={styles.wrapper}>
-            <span>{label}</span>
+            <span>
+              {label}
+            </span>
 
+            {meta.touched && meta.error && (
+              <span className={styles.errorMessage}>
+                {meta.error}
+              </span>
+            )}
+          
             <input
               {...field}
               className={styles.input}
               type={type}
               placeholder={placeholder}
-              // value={value}
               defaultValue={value}
               name={name}
+              min={0}
             />
           </label>
         )

@@ -17,3 +17,8 @@
   border-radius: 0.2rem;
   font-weight: 200;
 }
+
+.errorMessage {
+  color: var(--error);
+  font-size: 0.8rem;
+}

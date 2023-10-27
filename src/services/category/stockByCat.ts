@@ -16,12 +16,13 @@ const fetcher = async (url: string) => {
 const useGetStockByCat = () => {
   const url = "http://localhost:3000/api/category/stockByCat"
 
-  const { data, error, isLoading } = useSWR(url, fetcher)
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher)
 
   return {
     stockByCatData: data,
     stockByCatError: error,
     stockByCatLoading: isLoading,
+    refreshStockByCat: mutate
   }
 }
 

@@ -29,10 +29,11 @@ const FormikForm = (props: Props) => {
   } = props
 
 
-  const handleSubmitActions = async (values: any) => {
+  const handleSubmitActions = async (values: any, handleReset: any) => {
     await handleSubmit(values)
     setModalType("")
     updateData();
+    handleReset();
   }
 
   return (
@@ -44,7 +45,7 @@ const FormikForm = (props: Props) => {
         validationSchema={validationSchema}
         onSubmit={() => console.log("datas submitted")}
       >
-        {({ dirty, errors, values }) => {
+        {({ dirty, isValid, values, handleReset }) => {
           return (
             <Form className={styles.form}>
               {initialValues &&
@@ -65,8 +66,9 @@ const FormikForm = (props: Props) => {
 
               <Button
                 label={submitBtnText}
+                disabled={!(isValid && dirty)}
                 onClickAction={() => {
-                  handleSubmitActions(values)
+                  handleSubmitActions(values, handleReset)
                 }}
               />
             </Form>
