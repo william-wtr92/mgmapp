@@ -48,11 +48,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          wget --retry-connrefused --waitretry=5 --timeout=20 --tries=10 http://sonarqube:9000/api/system/status
+          wget --retry-connrefused --waitretry=5 --timeout=20 --tries=10 http://localhost:9000/api/system/status
           sonar-scanner \
             -Dsonar.projectKey=mgmapp \
             -Dsonar.sources=. \
-            -Dsonar.host.url=http://sonarqube:9000 \
+            -Dsonar.host.url=http://localhost:9000 \
             -Dsonar.login=$SONAR_TOKEN
 
       - name: Docker Compose Push
