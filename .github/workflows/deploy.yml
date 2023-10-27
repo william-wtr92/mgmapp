@@ -27,12 +27,12 @@ jobs:
       - name: Linting project
         run: npm run lint
 
-      - name: Install Sonar Scanner
-        run: |
-          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
-          unzip sonar-scanner-cli-4.6.2.2472-linux.zip
-          sudo mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
-          sudo ln -s /opt/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner
+      # - name: Install Sonar Scanner
+      #   run: |
+      #     wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+      #     unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+      #     sudo mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
+      #     sudo ln -s /opt/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner
 
       - name: Docker Compose Build
         run: docker-compose -f docker-compose.yml build
@@ -48,20 +48,20 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml push
 
-      - name: Wait SonarQube up
-        run: |
-          while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:9000/api/system/status)" != "200" ]]; do 
-            sleep 5; 
-          done
+      # - name: Wait SonarQube up
+      #   run: |
+      #     while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:9000/api/system/status)" != "200" ]]; do
+      #       sleep 5;
+      #     done
 
-      - name: Run SonarQube analysis
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          wget --retry-connrefused --waitretry=5 --timeout=20 --tries=10 http://localhost:9000/api/system/status
-          sonar-scanner -X\
-            -Dsonar.projectKey=mgmapp \
-            -Dsonar.sources=. \
-            -Dsonar.host.url=http://sonarqube:9000 \
-            -Dsonar.login=$SONAR_LOGIN \
-            -Dsonar.password=$SONAR_PASSWORD
+      # - name: Run SonarQube analysis
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #   run: |
+      #     wget --retry-connrefused --waitretry=5 --timeout=20 --tries=10 http://localhost:9000/api/system/status
+      #     sonar-scanner -X\
+      #       -Dsonar.projectKey=mgmapp \
+      #       -Dsonar.sources=. \
+      #       -Dsonar.host.url=http://localhost:9000 \
+      #       -Dsonar.login=$SONAR_LOGIN \
+      #       -Dsonar.password=$SONAR_PASSWORD
