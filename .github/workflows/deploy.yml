@@ -27,7 +27,7 @@ jobs:
           SECURITY_JWT_SECRET: ${{ secrets.SECURITY_JWT_SECRET }}
 
       - name: Linting project
-        run: npm run lint
+        run: npm run build & npm run lint
 
       - name: Docker Compose Push
         run: |
