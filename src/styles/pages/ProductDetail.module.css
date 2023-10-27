@@ -1,11 +1,11 @@
 .container {
   width: 40%;
-  margin: 20px 20px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   gap: 2rem;
   border-radius: 15px;
+  height: 100%;
 }
 
 .title {
@@ -19,9 +19,9 @@
   gap: 2rem;
   padding: 2rem;
   width: 80%;
+  height: 100%;
   background-color: var(--secondary);
   border-radius: 1rem;
-  height: fit-content;
 }
 
 .rightContainer {
@@ -48,9 +48,9 @@
 
 .data {
   font-size: 0.8rem;
-  padding: 5px 10px;
-  border: 2px solid black;
-  border-radius: 15px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--grey);
+  border-radius: 0.5rem;
   display: flex;
   justify-content: center;
   white-space: nowrap;
@@ -60,8 +60,8 @@
 
 .textarea {
   padding: 10px 15px;
-  border: 2px solid black;
-  border-radius: 15px;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   height: 4rem;
