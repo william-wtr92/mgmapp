@@ -34,8 +34,15 @@ jobs:
           sudo mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
           sudo ln -s /opt/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner
 
-      - name: Get SonarQube logs
-        run: docker logs sonarqube
+      - name: Docker Compose Build
+        run: docker-compose -f docker-compose.yml build
+        env:
+          DB_CONNECTION_HOST: ${{ secrets.DB_CONNECTION_HOST }}
+          DB_CONNECTION_USER: ${{ secrets.DB_CONNECTION_USER }}
+          DB_CONNECTION_PWD: ${{ secrets.DB_CONNECTION_PWD }}
+          DB_CONNECTION_DB: ${{ secrets.DB_CONNECTION_DB }}
+          SECURITY_PASSWORD_PEPPER: ${{ secrets.SECURITY_PASSWORD_PEPPER }}
+          SECURITY_JWT_SECRET: ${{ secrets.SECURITY_JWT_SECRET }}
 
       - name: Run SonarQube analysis
         env:
@@ -47,16 +54,6 @@ jobs:
             -Dsonar.sources=. \
             -Dsonar.host.url=http://sonarqube:9000 \
             -Dsonar.login=$SONAR_TOKEN
-
-      - name: Docker Compose Build
-        run: docker-compose -f docker-compose.yml build
-        env:
-          DB_CONNECTION_HOST: ${{ secrets.DB_CONNECTION_HOST }}
-          DB_CONNECTION_USER: ${{ secrets.DB_CONNECTION_USER }}
-          DB_CONNECTION_PWD: ${{ secrets.DB_CONNECTION_PWD }}
-          DB_CONNECTION_DB: ${{ secrets.DB_CONNECTION_DB }}
-          SECURITY_PASSWORD_PEPPER: ${{ secrets.SECURITY_PASSWORD_PEPPER }}
-          SECURITY_JWT_SECRET: ${{ secrets.SECURITY_JWT_SECRET }}
 
       - name: Docker Compose Push
         run: |
