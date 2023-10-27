@@ -55,7 +55,7 @@ const Login = () => {
         </div>
 
         <div className={styles.formRight}>
-          <p className={styles.formRightTitle}>Se connecter à Roland</p>
+          <p className={styles.formRightTitle}>Se connecter à SDM</p>
 
           <Formik
             initialValues={initialValues}
