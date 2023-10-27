@@ -20,11 +20,12 @@ const handler = mw({
       res,
     }: searchProductMw) => {
       let products
+      const searchTransform = search.toLowerCase()
 
-      if (search.length >= 2) {
+      if (searchTransform.length >= 2) {
         products = await ProductModel.query()
           .select()
-          .whereRaw('LOWER("name") LIKE ?', `%${search}%`)
+          .whereRaw('LOWER("name") LIKE ?', `%${searchTransform}%`)
           .withGraphFetched("category")
       }
 

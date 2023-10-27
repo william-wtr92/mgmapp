@@ -9,9 +9,8 @@ const seed = async () => {
   await db("category").del()
   await db("user").del()
 
-  const [predefinedPasswordHash, predefinedPasswordSalt] = await hashPassword(
-    "MgmProjet992!"
-  )
+  const [predefinedPasswordHash, predefinedPasswordSalt] =
+    await hashPassword("MgmProjet992!")
   const predefinedUser = {
     email: "william@quoicoubeh.fr",
     passwordHash: predefinedPasswordHash,
@@ -51,7 +50,7 @@ const seed = async () => {
     {
       name: "Framboise",
       desc: "Framboise de saison caliente papiiii",
-      stock: 100,
+      stock: 101,
       categoryId: categoryIds[1],
     },
     {
@@ -75,13 +74,13 @@ const seed = async () => {
     {
       name: "Haricots verts",
       desc: "Bon prix au kg",
-      stock: 34,
+      stock: 200,
       categoryId: categoryIds[0],
     },
     {
-      name: "Carrote",
+      name: "Carotte",
       desc: "Le meilleur légume",
-      stock: 10,
+      stock: 200,
       categoryId: categoryIds[0],
     },
     {
@@ -99,13 +98,13 @@ const seed = async () => {
     {
       name: "Riz",
       desc: "Riz bien carré de l'oncle Bens",
-      stock: 12,
+      stock: 200,
       categoryId: categoryIds[2],
     },
     {
       name: "Pomme de terre",
       desc: "Bien jaune, mange pas avec la peau ",
-      stock: 67,
+      stock: 200,
       categoryId: categoryIds[2],
     },
   ]
