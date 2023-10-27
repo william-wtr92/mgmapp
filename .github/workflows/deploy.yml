@@ -63,4 +63,5 @@ jobs:
             -Dsonar.projectKey=mgmapp \
             -Dsonar.sources=. \
             -Dsonar.host.url=http://localhost:9000 \
-            -Dsonar.login=$SONAR_TOKEN
+            -Dsonar.login=$SONAR_LOGIN \
+            -Dsonar.password=$SONAR_PASSWORD
