@@ -42,8 +42,11 @@ jobs:
           sonar-scanner \
             -Dsonar.projectKey=mgmapp \
             -Dsonar.sources=. \
-            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.host.url=http://sonarqube:9000 \
             -Dsonar.login=$SONAR_TOKEN
+
+      - name: Get SonarQube logs
+        run: docker logs sonarqube
 
       - name: Docker Compose Build
         run: docker-compose -f docker-compose.yml build
