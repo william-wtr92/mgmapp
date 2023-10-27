@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "fix": "next lint --fix"
+    "fix": "next lint --fix",
+    "create-db": "npx knex migrate:rollback && npx knex migrate:latest && npx knex seed:run"
   },
   "dependencies": {
     "@fontsource/chivo": "^5.0.8",

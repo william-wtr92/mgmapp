@@ -109,7 +109,7 @@
 
 .highPriority {
   color: var(--error);
-  animation-duration: 800ms;
+  animation-duration: 700ms;
   animation-iteration-count: infinite;
 }
 
@@ -121,8 +121,6 @@
 
 .lowPriority {
   color: var(--success);
-  animation-duration: 800ms;
-  animation-iteration-count: infinite;
 }
 
 .categoryInfo {
