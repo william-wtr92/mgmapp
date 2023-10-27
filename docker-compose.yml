@@ -13,6 +13,9 @@ services:
       - SECURITY_JWT_SECRET=your_jwt_secret
     depends_on:
       - db
+      - sonarqube
+    networks:
+      - my_custom_network
   db:
     image: "postgres:alpine"
     environment:
@@ -21,7 +24,15 @@ services:
       POSTGRES_DB: mgmapp
     ports:
       - "5432:5432"
+    networks:
+      - my_custom_network
   sonarqube:
     image: sonarqube:latest
     ports:
       - "9000:9000"
+    networks:
+      - my_custom_network
+
+networks:
+  my_custom_network:
+    driver: bridge

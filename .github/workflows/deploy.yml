@@ -44,7 +44,7 @@ jobs:
           SECURITY_PASSWORD_PEPPER: ${{ secrets.SECURITY_PASSWORD_PEPPER }}
           SECURITY_JWT_SECRET: ${{ secrets.SECURITY_JWT_SECRET }}
 
-      - name: Attendre que SonarQube soit prêt
+      - name: Wait SonarQube up
         run: |
           while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:9000/api/system/status)" != "200" ]]; do 
             sleep 5; 
