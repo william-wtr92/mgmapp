@@ -38,7 +38,7 @@ jobs:
             -Dsonar.host.url=http://localhost:9000 \
             -Dsonar.login=$SONAR_TOKEN
 
-       - name: Docker Compose Build
+      - name: Docker Compose Build
         run: docker-compose -f docker-compose.yml build
         env:
           DB_CONNECTION_HOST: ${{ secrets.DB_CONNECTION_HOST }}
